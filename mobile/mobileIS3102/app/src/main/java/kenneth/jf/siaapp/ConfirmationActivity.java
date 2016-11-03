@@ -33,9 +33,10 @@ import java.util.concurrent.ExecutionException;
 
 //confirm payment
 public class ConfirmationActivity extends AppCompatActivity {
-
+    String paymentId;
     ArrayList<String> numTixList;
     ArrayList<Ticket> ticketList;
+    JSONObject jsonDetails;
     int num;
 
     private RestTemplate restTemplate = ConnectionInformation.getInstance().getRestTemplate();
@@ -47,9 +48,13 @@ public class ConfirmationActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        Intent intents = getIntent();
-        numTixList = intents.getExtras().getStringArrayList("spinList");
-        ticketList = intents.getExtras().getParcelableArrayList("ticketList");
+        numTixList = ConnectionInformation.getInstance().getNumList();
+        ticketList = ConnectionInformation.getInstance().getTicketList();
+        System.out.println("numTixList : SIZEEEEEEEEEEEE ---> "+ numTixList.size());
+        System.out.println("TICKETLIST: SIZEEEEEEEEE ->  " + ticketList.size());
+
+
+
 
         //To View Ticket List
         Button button = (Button) findViewById(R.id.viewTicketList);
@@ -81,7 +86,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 
         try {
-            JSONObject jsonDetails = new JSONObject(intent.getStringExtra("PaymentDetails"));
+            jsonDetails = new JSONObject(intent.getStringExtra("PaymentDetails"));
 
             //Displaying payment details
             showDetails(jsonDetails.getJSONObject("response"), intent.getStringExtra("PaymentAmount"));
@@ -115,17 +120,11 @@ public class ConfirmationActivity extends AppCompatActivity {
         textViewId.setText(jsonDetails.getString("id"));
         textViewStatus.setText(jsonDetails.getString("state"));
         textViewAmount.setText(paymentAmount+" USD");
-
+        paymentId = jsonDetails.getString("id");
         if(jsonDetails.getString("state").equals("approved")){
 
             try {
                 new confirmPayment().execute().get();
-
-
-
-
-
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -140,45 +139,42 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     public class confirmPayment extends AsyncTask<Void, Void, String> {
 
-
-
-
-
-
         protected String doInBackground(Void... params) {
             Log.d("TAG", "DO IN BACKGROUND");
+
+
             try {
 
                 JSONObject request = new JSONObject();
-
                 JSONArray jarray = new JSONArray();
 
 
 
-                for(int i=0;i<num;i++){
-
+                for(int i=0;i<numTixList.size();i++){
                     if(Integer.valueOf(numTixList.get(i)) == 0){
                         continue;
                     }
 
                     JSONObject jsonObject= new JSONObject();
-                    jsonObject.put("categoryId", ticketList.get(i));
+                    jsonObject.put("categoryId", ticketList.get(i).getCode());
                     jsonObject.put("numTickets", numTixList.get(i));
+                    jsonObject.put("paymentId", paymentId);
                     jarray.put(jsonObject);
                 }
 
 
 
-
-
-
-                JSONObject jsonObjectw= new JSONObject();
+                /*JSONObject jsonObjectw= new JSONObject();
                 jsonObjectw.put("categoryId", 2);
                 jsonObjectw.put("numTickets", 3);
                 jarray.put(jsonObjectw);
                 request.put("ticketsJSON", jarray);
-                request.put("paymentId", "12345");
-                HttpEntity<String> request2 = new HttpEntity<String>(request.toString(),ConnectionInformation.getInstance().getHeaders());
+                request.put("paymentId", "12345");*/
+
+
+
+
+                HttpEntity<String> request2 = new HttpEntity<String>(jarray.toString(),ConnectionInformation.getInstance().getHeaders());
                 Log.d("TAGGGGGGGGREQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
                 String url2 = "https://" + url + "/tixBuyTicket";
 

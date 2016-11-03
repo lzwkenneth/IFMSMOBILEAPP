@@ -3,11 +3,33 @@ package kenneth.jf.siaapp;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kenneth on 12/10/2016.
  */
 
 public class ConnectionInformation {
+
+    public ArrayList<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(ArrayList<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    public ArrayList<String> getNumList() {
+        return numList;
+    }
+
+    public void setNumList(ArrayList<String> numList) {
+        this.numList = numList;
+    }
+
+    public ArrayList<Ticket> ticketList;
+    public ArrayList<String> numList;
+
 
     protected String data;
     protected String url;

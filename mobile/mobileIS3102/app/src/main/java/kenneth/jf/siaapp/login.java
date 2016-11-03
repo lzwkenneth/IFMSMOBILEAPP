@@ -98,7 +98,7 @@ public class login extends AppCompatActivity {
             ConnectionInformation.getInstance().setRestTemplate(restTemplate2);
             //SET ADDRESS OF THE SERVER
             //ConnectionInformation.getInstance().setUrl("192.168.43.244:8443");
-            ConnectionInformation.getInstance().setUrl("192.168.43.153:8443");
+            ConnectionInformation.getInstance().setUrl("192.168.1.10:8443");
             restTemplate = restTemplate2;
         } catch (Exception e) {
             Log.d(TAG, "Error creating the rest template for connection");

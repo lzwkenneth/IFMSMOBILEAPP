@@ -58,6 +58,9 @@ public class viewTicketList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(ticket_list, container, false);
+
+
+
         final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Retrieving the Tickets...");
@@ -117,24 +120,20 @@ public class viewTicketList extends Fragment {
                     e.printStackTrace();
                 }
 
-
-
                 Intent intent = new Intent(getActivity(), dashboard.class);
                 intent.putExtra("key2", "ticketSum");
                 intent.putExtra("price", String.valueOf(sum));
                 System.err.println("ARRAYLIST: " + TicketList.size());
-
-
-                Intent intent2 = new Intent(getActivity(), ConfirmationActivity.class);
-                intent2.putParcelableArrayListExtra("ticketList", TicketList);
-                intent2.putStringArrayListExtra("spinList",spinList);
-                intent2.putExtra("num", TicketList.size());
-
-                startActivity(intent2);
-
-
-
                 startActivity(intent);
+                ConnectionInformation.getInstance().setTicketList(TicketList);
+                ConnectionInformation.getInstance().setNumList(spinList);
+
+
+
+
+
+
+
                 System.out.println("TOTAL PRICE IS      " + sum);
                 Toast.makeText(getActivity(),"Checking out..."+ sum, Toast.LENGTH_SHORT).show();
 

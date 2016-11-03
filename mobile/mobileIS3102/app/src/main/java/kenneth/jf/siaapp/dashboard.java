@@ -93,7 +93,7 @@ public class dashboard extends AppCompatActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             //System.out.println("set vivisility gone");
-
+            sliderShow.setVisibility(View.GONE);
             System.out.println("KEY2 VALUE IS:   " + extras.get("key2"));
             if (extras.getString("key2").equals("eventInfo")) {
                 System.out.println("EVENT ID:             :" + extras.getString("eventId"));
@@ -101,6 +101,13 @@ public class dashboard extends AppCompatActivity
                 Log.d("TAG EVENT INFO", extras.getString("key2"));
             } else if (extras.getString("key2").equals("eventTicketing")) {
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new viewTicketList()).commit();
+         /*   } else if (extras.getString("key2").equals("passToCA")) {
+
+                Intent intent = new Intent(this, ConfirmationActivity.class);
+                intent.putParcelableArrayListExtra("arraylist",extras.getParcelableArrayList("arraylist"));
+                intent.putStringArrayListExtra("arraylist2",extras.getStringArrayList("arraylist2"));
+                startActivity(intent);
+*/
             } else if (extras.getString("key2").equals("ticketSum")) {
                 //from viewTicketList
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new paymentSummary()).commit();
