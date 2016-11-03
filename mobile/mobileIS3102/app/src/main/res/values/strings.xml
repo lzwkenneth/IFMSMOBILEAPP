@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">IFMSapp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_logout">Log Out</string>
+    <!-- FOR LOGIN PAGE-->
+    <string name="Login">LOGIN</string>
+
+
+    <!--For User Profile-->
+    <string name="profileSetting">Make requests</string>
+    <string name="profileName">Profile Name</string>
+    <string name="permission_failure">FAILED FOR PERMISSION</string>
+
+
+    <string name="food_prompt">Choose Your Food!</string>
+    <string name="drink_prompt">Choose Your Drinks!</string>
+    <string name="category">Choose your category type!</string>
+    <string-array name="food_arrays">
+        <item>Pasta</item>
+        <item>Fried Rice</item>
+        <item>Nasi Lemak</item>
+        <item>Chicken Chop</item>
+    </string-array>
+
+
+    <string-array name="event_array">
+        <item>Comments</item>
+        <item>Suggestions</item>
+        <item>Complaints</item>
+        <item>Recommendations</item>
+    </string-array>
+
+    <string-array name="number_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+
+    </string-array>
+
+
+
+    <!--Events-->
+     <string name="some_text">
+     Some North American Countries!
+ </string>
+</resources>

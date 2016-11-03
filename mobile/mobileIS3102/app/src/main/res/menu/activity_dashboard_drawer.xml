@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/eventlisting"
+            android:icon="@drawable/folder"
+            android:title="EventListing" />
+        <item
+            android:id="@+id/locationlisting"
+            android:icon="@drawable/folder"
+            android:title="Locations" />
+  <!--      <item
+            android:id="@+id/ticketing"
+            android:icon="@drawable/finance"
+            android:title="My Tickets" />-->
+  <!--      <item
+            android:id="@+id/payment"
+            android:icon="@drawable/finance"
+            android:title="Payment" />-->
+        <item
+            android:id="@+id/ticketingList"
+            android:icon="@drawable/chat"
+            android:title="My Tickets" />
+        <item
+            android:id="@+id/inFlightOrderingFrag"
+            android:icon="@drawable/chat"
+            android:title="Feedback" />
+        <item
+            android:id="@+id/second_frag"
+            android:icon="@drawable/beacons"
+            android:title="Beacon Tracking" />
+        <item
+            android:id="@+id/third_frag"
+            android:icon="@drawable/beacons"
+            android:title="Beacon Ranging" />
+        <item
+            android:id="@+id/qr_scanner"
+            android:icon="@drawable/beacons"
+            android:title="SCAN FOR DISCOUNT USING QR CODE" />
+        <item
+            android:id="@+id/first_frag"
+            android:icon="@drawable/beacons"
+            android:title="first_frag" />
+    </group>
+</menu>

@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e454c414a069241ee08444d187f2dd3a702596b5">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-9.4.0_79cafa9f437e9c5c655c9f7fb603c2052739e465\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.daimajia.slider\library\1.1.5\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="08962e03b6a954c65d4944e092879b7f5ee1208d">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.daimajia.slider-library-1.1.5_13558a3a31c4aaa87766805beddce08ec5a9e59c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_aa978753527eabf4132eae3b881779615a2aec2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_e9c5ae5cc0b025f2ef9c51d7f4948a2eb2d69504\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\org.altbeacon\android-beacon-library\2.3.5\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="73124f508f8d4d974217d0ee760fef46c8a20f61">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.altbeacon-android-beacon-library-2.3.5_6e81f7b08fd655507ff60638159b409b5c9c1e46\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_927dcefe540c731a5c542c03d77984996aaf46fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_f1cbe05c1554e317a90c8bb5b69e769dc43a938c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.4.0_839b95e407a873ee449b70f66563fe932e3da5cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f6fbe4dc3b500ea2aea5ecfcdfc1d96708816ae">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_6f005f3a26e8e6ca55b8800f8722cce962466951\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\org.springframework.android\spring-android-core\1.0.1.RELEASE\e68f0e8e4b636ee30c4de58953be38d9b72a5e3b\spring-android-core-1.0.1.RELEASE.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e68f0e8e4b636ee30c4de58953be38d9b72a5e3b">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\spring-android-core-1.0.1.RELEASE_5ff6b65be76d2a81c387299f2acb853e75b3c72d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.3.2\d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27\picasso-2.3.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.3.2_b17a0d5b48a59683882af25a9ca077eac88adec1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient-android\4.3.5.1\eecbb0b998e77629862a13d957d552b3be58fc4e\httpclient-android-4.3.5.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="eecbb0b998e77629862a13d957d552b3be58fc4e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\httpclient-android-4.3.5.1_b450ebd0b07a95be6860bf4746794d627dcbd6fd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="4299af46925cb0648191ee887872732ad2040e3d">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f8bc2b23efe959f2ad9b86b5ef53814ba6fed52b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_beb41713d634adfcb3738dfd5f7972bb6d41fcc2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_9c67e8438588f56af5cc371b2632b86a53efdd5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\library-2.4.0_8206f78d3b53604ba8e35f90130ad23a14d82c23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\org.springframework.android\spring-android-rest-template\1.0.1.RELEASE\e132d929bd181941f79b0d63edafb8a86ae6fd33\spring-android-rest-template-1.0.1.RELEASE.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e132d929bd181941f79b0d63edafb8a86ae6fd33">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\spring-android-rest-template-1.0.1.RELEASE_52acd860d1ab2cd983b259e4e6ea8a4578802b13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_08c4e45b42df54d7057bf35b488c11a7089a344f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.3.2\c75edc740a6d8cb1cef6fa82fa594e0bce561916\jackson-databind-2.3.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c75edc740a6d8cb1cef6fa82fa594e0bce561916">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.3.2_22479ca1640369c81b7c684b8f713e7de49ced87\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_a5a8cd648124c53dd5141c90a186f0b5da67577e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_779130811acd3e3e1cbc8dfc51e71b1df1eaaf24\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5e04c0b3683ca45b343284d93e5594b5f9044551">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-9.4.0_d16022f6d148ab14c322c6f045a03e58199a52a5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\zbar\1.8.2\jars\libs\zbar.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7bbdf7ba57a8a157c0cad51e455609c70887812e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\zbar_35c4c39fd4de6279369f66eda8726f27e5244eb3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1134090a27fa1f27dd2f0a642cc45df3f0b9f3b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_16b4fa3bf55610d3e3ce052e55ab559131d12173\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_be291695133b41f5a4a8a1145efe272c8e0b485e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.1\2287494d4f5f9f3a9a2bb6980e3f32053721b315\core-3.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.2.1_2cf1670319868e0c1e3fa2e6759e4a56d252cbfd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.1_869a3c4090d731beadcf5c658ec9a030126241f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_64ebb67a306896bdaf1a54fb6e86ecd311a88e68\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.stripe\stripe-android\1.0.5\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0179adfd2118b1b314a3aec33ee0d472c6f8d5a7">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.stripe-stripe-android-1.0.5_4797ac13081d805cbe60e65ef57ddaf094991cbb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="954697ee6ea7bdd596babf4f70e8b7a17ca7649e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-9.4.0_28fd15e50616464234c56ccdbae0bd3b0d37d0bf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.3.2\559b70ac8a0d5cad611da4223137a920147201ba\jackson-core-2.3.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="559b70ac8a0d5cad611da4223137a920147201ba">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.3.2_8a6b219e3f8efb57c36c046d642c111b7c8de0fa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations-java5\15.0\7011b4551a8451906759b05814c58b9eb829ea9b\annotations-java5-15.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7011b4551a8451906759b05814c58b9eb829ea9b">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\annotations-java5-15.0_abbf8299a645324a2f5e3bf8af3c6c7ea37eb727\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-6.1.0_5e332975632cca03703c943c3985b4331d777896\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_eacb77a5d19afd8ef39d7f02bd416928b0e17e38\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.3.0\f5e853a20b60758922453d56f9ae1e64af5cb3da\jackson-annotations-2.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f5e853a20b60758922453d56f9ae1e64af5cb3da">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.3.0_a8757816b9c8765e295ae5d4426a1140ebf125a8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5eb39b7876776b06261d270429f7cfdbcf288e26\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_8b2955ddb4c1198478a7d2533554a14e2fb1b12d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\zbar\1.8.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="15f1c7a4c01dd95b6da8c5acfaf42d2075d1ae2a">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.dm7.barcodescanner-zbar-1.8.2_ddd6f953d088a105aa66c354fe5af2b3927cb9df\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\io.card\android-sdk\5.3.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="28bc7007cc5fb935b0737a42f05b8286936228b0">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\io.card-android-sdk-5.3.4_69ae857ea2fc759e0a487c1417b1e3b75324ec63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.paypal.sdk\paypal-android-sdk\2.14.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="da47b5635353ca55aabc9e1ad6aaaa5626fedcb4">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.paypal.sdk-paypal-android-sdk-2.14.2_a1289885eec9f1d32ac9576b9ff3291ba35476cd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_97401619e7dc5fd667fa4f951cb3126700c7f5d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.stripe\stripe-java\2.6.0\caac132a3134dab96f3f4d1c38a47160521899c1\stripe-java-2.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="caac132a3134dab96f3f4d1c38a47160521899c1">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\stripe-java-2.6.0_6db7d190a4d6445567cb5eb2a4cd226d48c87031\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\core\1.8.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="96c83d4de6289a3f674165f896ac992564a7138d">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.dm7.barcodescanner-core-1.8.2_89853a8f2d5a084d53cd63214624c2781a527e7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1bf7bae603dbff0a4d02e99ee5f61f39381c8547\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\cn.pedant.sweetalert\library\1.3\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.pedant.sweetalert-library-1.3_7b938a9a6e2997bc8904275b6bc20ce1498d97d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_bdb759f03765d998fea779ceb5cce8ea19cea775\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_0dd584a8525ca5ccc1b52f747bd069cf974c8a4e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.pnikosis\materialish-progress\1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.pnikosis-materialish-progress-1.0_c0ba55713c67db0276b045219ae81aff283229d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Program Files\Android\Android Studio1\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\mobile\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_ea3566817aae63c8e87ab16e4d1ccfdc8d788289\classes.dex" />
+    </item>
+
+</items>
