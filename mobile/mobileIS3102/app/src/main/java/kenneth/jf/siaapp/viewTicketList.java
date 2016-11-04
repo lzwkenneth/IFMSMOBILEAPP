@@ -54,6 +54,7 @@ public class viewTicketList extends Fragment {
     String checkTixResponse;
     String spinnerSelected;
     ArrayList<String> spinList;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,7 +96,8 @@ public class viewTicketList extends Fragment {
                 Spinner spin = (Spinner) myView.findViewById(R.id.spinnerTicketList);
                 spinList = new ArrayList<>();
                 for(int i=0;i<TicketList.size();i++){
-                    spinnerSelected = spin.getSelectedItem().toString();
+                    //spinnerSelected =
+                    spinnerSelected = dataAdapter.getSpinnerItem(i);
                     spinList.add(spinnerSelected);
                     TicketList.get(i).setNumTix(Integer.valueOf(spinnerSelected));
                     ticketSelected.add(TicketList.get(i));
@@ -291,7 +293,7 @@ public class viewTicketList extends Fragment {
     private class MyCustomAdapter extends ArrayAdapter<Ticket> {
 
         private ArrayList<Ticket> TicketList;
-
+        viewTicketList.MyCustomAdapter.ViewHolder holder = null;
         public MyCustomAdapter(Context context, int textViewResourceId,
                                ArrayList<Ticket> TicketList) {
             super(context, textViewResourceId, TicketList);
@@ -309,7 +311,7 @@ public class viewTicketList extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
 
-            viewTicketList.MyCustomAdapter.ViewHolder holder = null;
+
             Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
@@ -356,6 +358,13 @@ public class viewTicketList extends Fragment {
             return convertView;
 
         }
+
+        public String getSpinnerItem(int position){
+            return holder.spinner.getItemAtPosition(position).toString();
+        }
+
+
+
     }
 
   /*  private void checkButtonClick() {
