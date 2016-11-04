@@ -157,7 +157,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
                     JSONObject jsonObject= new JSONObject();
                     jsonObject.put("categoryId", ticketList.get(i).getCode());
-                    jsonObject.put("numTickets", numTixList.get(i));
+                    jsonObject.put("numTickets", ticketList.get(i).getNumTix());
                     jsonObject.put("paymentId", paymentId);
                     jarray.put(jsonObject);
                 }
