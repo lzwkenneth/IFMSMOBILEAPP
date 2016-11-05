@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.R.attr.name;
 import static com.paypal.android.sdk.fw.v;
 import static kenneth.jf.siaapp.R.layout.event;
 
@@ -103,6 +104,13 @@ public class eventlisting extends Fragment {
                     Log.d("loopforeventlistobject", m.toString());
                 }
 
+                Collections.sort(EventList, new Comparator<Event>() {
+                    public int compare(Event s1, Event s2) {
+                        System.out.println("Event sorting" + s1.getName());
+                        return (s1.getName().compareTo(s2.getName()));
+                    }
+                });
+
 
             } catch (Exception e) {
                 Log.e("TAG", e.getMessage(), e);
@@ -130,12 +138,6 @@ public class eventlisting extends Fragment {
         dataAdapter = new MyCustomAdapter(this.getActivity(), R.layout.event_info, EventList);
         ListView listView = (ListView) myView.findViewById(R.id.listView1);
         // Assign adapter to ListView
-        Collections.sort(EventList, new Comparator<Event>() {
-            public int compare(Event s1, Event s2) {
-                System.out.println(s1.getName());
-                return (s1.getName().compareTo(s2.getName()));
-            }
-        });
         listView.setAdapter(dataAdapter);
         Collections.sort(this.EventList, new Comparator<Event>() {
             public int compare(Event s1, Event s2) {
@@ -225,16 +227,19 @@ public class eventlisting extends Fragment {
             holder.code.setText(Event.getName());
             //holder.code.setChecked(Event.isSelected());
             holder.code.setTag(Event);
+            final Long tt = Event.getCode();
             holder.eventInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Button cb = (Button) view;
                     Event event = (Event) cb.getTag();
+                    System.out.println("position" + tt);
+                  //  System.out.println("position name" + holder.code.getText().toString());
                     int pos = position + 1;
                     //send details using bundle to the next fragment
                     Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "eventInfo");
-                    intent.putExtra("eventId", pos);
+                    intent.putExtra("eventId", String.valueOf(tt));
                     startActivity(intent);
 
 
@@ -246,10 +251,12 @@ public class eventlisting extends Fragment {
                     Button cb = (Button) view;
                     Event event = (Event) cb.getTag();
                     int pos = position + 1;
+                    System.out.println("position" + tt);
                     //send details using bundle to the next fragment
                     Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "eventTicketing");
-                    intent.putExtra("eventId", String.valueOf(pos));
+                    System.out.println("clicked position: " + pos);
+                    intent.putExtra("eventId", String.valueOf(tt));
                     System.out.println("FROM POSITION in eventListing: " + pos);
                     startActivity(intent);
 

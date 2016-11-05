@@ -213,6 +213,13 @@ public class viewTicketList extends Fragment {
                     //return list
                     Log.d("loopforticketlistobject", m.toString());
                 }
+
+                Collections.sort(TicketList, new Comparator<Ticket>() {
+                    public int compare(Ticket s1, Ticket s2) {
+                        System.out.println(s1.getName());
+                        return (s1.getName().compareTo(s2.getName()));
+                    }
+                });
             } catch (Exception e) {
                 Log.e("TAG", e.getMessage(), e);
             }
