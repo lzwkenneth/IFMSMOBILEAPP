@@ -96,6 +96,12 @@ public class location extends Fragment {
                     //return list
                 }
 
+                Collections.sort(locationList, new Comparator<LocationListObject>() {
+                    public int compare(LocationListObject s1, LocationListObject s2) {
+                        return (s1.getName().compareTo(s2.getName()));
+                    }
+                });
+
 
             } catch (Exception e) {
                 Log.e("TAG", e.getMessage(), e);
@@ -208,6 +214,7 @@ public class location extends Fragment {
 
             LocationListObject location = locationList.get(position);
             holder.code.setText(location.getName());
+            final Long tt = location.getId();
             //holder.name.setChecked(location.isSelected());
             holder.code.setTag(location);
             holder.locationInfo.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +226,7 @@ public class location extends Fragment {
                     //send details using bundle to the next fragment
                     Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "locationInfo");
-                    intent.putExtra("locationId", pos);
+                    intent.putExtra("locationId", String.valueOf(tt));
                     startActivity(intent);
 
 
