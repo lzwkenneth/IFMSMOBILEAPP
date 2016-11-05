@@ -29,6 +29,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.paypal.android.sdk.fw.v;
@@ -46,13 +48,15 @@ public class eventlisting extends Fragment {
     private String url = ConnectionInformation.getInstance().getUrl();
     ArrayList<Event> EventList = new ArrayList<Event>();
     ArrayList<Event> EventList2 = new ArrayList<Event>();
+    ProgressDialog progressDialog;
 
     FragmentManager fragmentManager = getFragmentManager();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
+        progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Retrieving the Events...");
         progressDialog.show();
@@ -61,22 +65,11 @@ public class eventlisting extends Fragment {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if ( ConnectionInformation.getInstance().getAuthenticated() ){
-                            Log.d("TAG","After authenticated");
-                            displayListView();
-                            //checkButtonClick(); //for checkbox
-                        }
-                        else{
-                            Log.d("TAG","After NOT authenticated");
 
-                        }
-                        // onLoginFailed();
-                        progressDialog.dismiss();
+
                     }
-                }, 5000);
-        myView = inflater.inflate(event,container,false);
-
-
+                }, 700);
+        myView = inflater.inflate(event, container, false);
 
 
         return myView;
@@ -96,11 +89,11 @@ public class eventlisting extends Fragment {
                 String url2 = "https://" + url + "/tixViewAllEvents";
 
                 Log.d("TAG", "BEFORE VERIFYING" + restTemplate.getMessageConverters().toString());
-                Log.d("TAG",request2.toString());
+                Log.d("TAG", request2.toString());
                 // Log.d("TAG",request2.getBody());
                 ResponseEntity<EventListObject[]> responseEntity = restTemplate.exchange(url2, HttpMethod.GET, request2, EventListObject[].class);
 
-                for ( EventListObject m : responseEntity.getBody()){
+                for (EventListObject m : responseEntity.getBody()) {
                     Event e = new Event();
                     e.setName(m.getEventName());
                     e.setCode(m.getId());
@@ -119,9 +112,10 @@ public class eventlisting extends Fragment {
         }
 
         protected void onPostExecute(String greeting) {
-
+            displayListView();
+            progressDialog.dismiss();
             Log.d("TAG", "DO POST EXECUTE");
-            Log.d("EVENT: " , String.valueOf(EventList.size()));
+            Log.d("EVENT: ", String.valueOf(EventList.size()));
             test = false;
         }
     }
@@ -136,7 +130,20 @@ public class eventlisting extends Fragment {
         dataAdapter = new MyCustomAdapter(this.getActivity(), R.layout.event_info, EventList);
         ListView listView = (ListView) myView.findViewById(R.id.listView1);
         // Assign adapter to ListView
+        Collections.sort(EventList, new Comparator<Event>() {
+            public int compare(Event s1, Event s2) {
+                System.out.println(s1.getName());
+                return (s1.getName().compareTo(s2.getName()));
+            }
+        });
         listView.setAdapter(dataAdapter);
+        Collections.sort(this.EventList, new Comparator<Event>() {
+            public int compare(Event s1, Event s2) {
+                System.out.println(s1.getName());
+                return (s1.getName().compareTo(s2.getName()));
+            }
+        });
+        dataAdapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -160,11 +167,17 @@ public class eventlisting extends Fragment {
             super(context, textViewResourceId, EventList);
             this.EventList = new ArrayList<>();
             this.EventList.addAll(EventList);
+            Collections.sort(this.EventList, new Comparator<Event>() {
+                public int compare(Event s1, Event s2) {
+                    System.out.println(s1.getName());
+                    return (s1.getName().compareTo(s2.getName()));
+                }
+            });
         }
 
         private class ViewHolder {
             TextView code;
-           // CheckBox name;
+            // CheckBox name;
             Button eventInfo;
             Button ticketList;
         }
@@ -178,14 +191,14 @@ public class eventlisting extends Fragment {
             Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
-                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.event_info, null);
 
                 holder = new ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.code);
-               // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
+                // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.eventInfo = (Button) convertView.findViewById(R.id.viewEventInfo);
-                holder.ticketList = (Button)convertView.findViewById(R.id.toTicketList);
+                holder.ticketList = (Button) convertView.findViewById(R.id.toTicketList);
                 convertView.setTag(holder);
 
               /*  holder.name.setOnClickListener( new View.OnClickListener() {
@@ -204,8 +217,7 @@ public class eventlisting extends Fragment {
                 });*/
 
 
-            }
-            else {
+            } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
@@ -216,11 +228,11 @@ public class eventlisting extends Fragment {
             holder.eventInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Button cb = (Button) view ;
-                    Event event = (Event)cb.getTag();
-                    int pos = position +1;
+                    Button cb = (Button) view;
+                    Event event = (Event) cb.getTag();
+                    int pos = position + 1;
                     //send details using bundle to the next fragment
-                    Intent intent = new Intent(getActivity(),  dashboard.class);
+                    Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "eventInfo");
                     intent.putExtra("eventId", pos);
                     startActivity(intent);
@@ -231,11 +243,11 @@ public class eventlisting extends Fragment {
             holder.ticketList.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Button cb = (Button) view ;
-                    Event event = (Event)cb.getTag();
-                    int pos = position +1;
+                    Button cb = (Button) view;
+                    Event event = (Event) cb.getTag();
+                    int pos = position + 1;
                     //send details using bundle to the next fragment
-                    Intent intent = new Intent(getActivity(),  dashboard.class);
+                    Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "eventTicketing");
                     intent.putExtra("eventId", String.valueOf(pos));
                     System.out.println("FROM POSITION in eventListing: " + pos);

@@ -27,6 +27,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -41,13 +43,15 @@ public class location extends Fragment {
     private String url = ConnectionInformation.getInstance().getUrl();
     ArrayList<LocationListObject> locationList = new ArrayList<LocationListObject>();
     ArrayList<LocationListObject> locationList2 = new ArrayList<LocationListObject>();
+    ProgressDialog progressDialog;
 
     FragmentManager fragmentManager = getFragmentManager();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
+        progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Retrieving the locations...");
         progressDialog.show();
@@ -56,20 +60,10 @@ public class location extends Fragment {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if ( ConnectionInformation.getInstance().getAuthenticated() ){
-                            Log.d("TAG","After authenticated");
-                            displayListView();
-                            //checkButtonClick();
-                        }
-                        else{
-                            Log.d("TAG","After NOT authenticated");
 
-                        }
-                        // onLoginFailed();
-                        progressDialog.dismiss();
                     }
-                }, 5000);
-        myView = inflater.inflate(R.layout.location,container,false);
+                }, 70000);
+        myView = inflater.inflate(R.layout.location, container, false);
 
         return myView;
     }
@@ -87,11 +81,11 @@ public class location extends Fragment {
                 Log.d("TAGGGGGGGGREQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
                 String url2 = "https://" + url + "/building/viewBuildings";
                 Log.d("TAG", "BEFORE VERIFYING" + restTemplate.getMessageConverters().toString());
-                Log.d("TAG",request2.toString());
+                Log.d("TAG", request2.toString());
                 // Log.d("TAG",request2.getBody());
                 ResponseEntity<LocationListObject[]> responseEntity = restTemplate.exchange(url2, HttpMethod.GET, request2, LocationListObject[].class);
 
-                for ( LocationListObject m : responseEntity.getBody()){
+                for (LocationListObject m : responseEntity.getBody()) {
                     LocationListObject obj = new LocationListObject();
                     obj.setName(m.getName());
                     obj.setAddress(m.getAddress());
@@ -111,9 +105,15 @@ public class location extends Fragment {
         }
 
         protected void onPostExecute(String greeting) {
-
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            displayListView();
+            progressDialog.dismiss();
             Log.d("TAG", "DO POST EXECUTE");
-            Log.d("location: " , String.valueOf(locationList.size()));
+            Log.d("location: ", String.valueOf(locationList.size()));
 
         }
     }
@@ -129,6 +129,12 @@ public class location extends Fragment {
         ListView listView = (ListView) myView.findViewById(R.id.locationLV);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
+        Collections.sort(locationList, new Comparator<LocationListObject>() {
+            public int compare(LocationListObject s1, LocationListObject s2) {
+                return (s1.getName().compareTo(s2.getName()));
+            }
+        });
+        dataAdapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -170,7 +176,7 @@ public class location extends Fragment {
             Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
-                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.location_info, null);
 
                 holder = new ViewHolder();
@@ -196,8 +202,7 @@ public class location extends Fragment {
                 });*/
 
 
-            }
-            else {
+            } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
@@ -208,11 +213,11 @@ public class location extends Fragment {
             holder.locationInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Button cb = (Button) view ;
+                    Button cb = (Button) view;
                     LocationListObject location = (LocationListObject) cb.getTag();
-                    int pos = position +1;
+                    int pos = position + 1;
                     //send details using bundle to the next fragment
-                    Intent intent = new Intent(getActivity(),  dashboard.class);
+                    Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "locationInfo");
                     intent.putExtra("locationId", pos);
                     startActivity(intent);

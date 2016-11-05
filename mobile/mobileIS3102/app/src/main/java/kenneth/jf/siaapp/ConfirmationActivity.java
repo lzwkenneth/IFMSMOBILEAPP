@@ -150,14 +150,14 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 
 
-                for(int i=0;i<numTixList.size();i++){
-                    if(Integer.valueOf(numTixList.get(i)) == 0){
+                for(int i=0;i<ticketList.size();i++){
+                    if(Integer.valueOf(ticketList.get(i).getNumTix()) == 0){
                         continue;
                     }
 
                     JSONObject jsonObject= new JSONObject();
                     jsonObject.put("categoryId", ticketList.get(i).getCode());
-                    jsonObject.put("numTickets", ticketList.get(i).getNumTix());
+                    jsonObject.put("numTickets", ""+ticketList.get(i).getNumTix());
                     jsonObject.put("paymentId", paymentId);
                     jarray.put(jsonObject);
                 }

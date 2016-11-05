@@ -35,8 +35,16 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import static com.paypal.android.sdk.cy.i;
+import static kenneth.jf.siaapp.R.id.ticketName;
 import static kenneth.jf.siaapp.R.layout.ticket_list;
 
 
@@ -54,6 +62,7 @@ public class viewTicketList extends Fragment {
     String checkTixResponse;
     String spinnerSelected;
     ArrayList<String> spinList;
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -61,8 +70,7 @@ public class viewTicketList extends Fragment {
         myView = inflater.inflate(ticket_list, container, false);
 
 
-
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
+        progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Retrieving the Tickets...");
         progressDialog.show();
@@ -71,19 +79,8 @@ public class viewTicketList extends Fragment {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        if (ConnectionInformation.getInstance().getAuthenticated()) {
-                            Log.d("TAG", "After authenticated");
-                            displayListView();
-                            //checkButtonClick();
-                        } else {
-                            Log.d("TAG", "After NOT authenticated");
-
-                        }
-
-                        progressDialog.dismiss();
                     }
-                }, 5000);
+                }, 700);
 
 
         myView = inflater.inflate(ticket_list, container, false);
@@ -94,26 +91,35 @@ public class viewTicketList extends Fragment {
             public void onClick(View v) {
                 double sum = 0.0;
                 Spinner spin = (Spinner) myView.findViewById(R.id.spinnerTicketList);
+
                 spinList = new ArrayList<>();
-                for(int i=0;i<TicketList.size();i++){
+                TicketList = dataAdapter.getTicketListOut();
+                for (int i = 0; i < TicketList.size(); i++) {
                     //spinnerSelected =
-                    spinnerSelected = dataAdapter.getSpinnerItem(i);
-                    spinList.add(spinnerSelected);
-                    TicketList.get(i).setNumTix(Integer.valueOf(spinnerSelected));
-                    ticketSelected.add(TicketList.get(i));
-                    sum += Double.valueOf(TicketList.get(i).getPrice()) * Integer.valueOf(spinnerSelected);
+                    //  System.out.println("kennnnnnnn" + dataAdapter.toString());
+                    //  System.out.println("kennnnnnnn" + dataAdapter.getSpinnerItem(i).toString());
+                    // System.out.println("kennnnnnnn" + dataAdapter.getView);
+                    //   spinnerSelected = dataAdapter.getSpinnerItem(i);
+                    //  spinList.add(spinnerSelected);
+                    // System.out.println("DEBUG! " + spinnerSelected.toString());
+                    //TicketList.get(i).setNumTix(Integer.valueOf(spinnerSelected));
+                    //ticketSelected.add(TicketList.get(i));
+                    sum += (Double.valueOf(TicketList.get(i).getPrice() * TicketList.get(i).getNumTix()));
                 }
+
                 //NEED TO CHECK IF TICKETSSSSSSS are available
                 try {
                     System.out.println("REACHED CHECKING OF TICKETS");
                     new checkTix().execute().get();
                     System.out.println("CHECK TICKET RESPONSE: " + checkTixResponse);
-                    if(checkTixResponse.equals("\"\"")) {
-                        System.out.println("CHECK AGAIN: " +checkTixResponse);
-                    }
-                    else{
+                    if (checkTixResponse.equals("\"\"")) {
+                        System.out.println("OK VERIFIED");
+                    } else {
+                        String[] arr = checkTixResponse.split("\\.");
+                        arr[0] = arr[0].substring(1);
+
                         //showDialog(getActivity(), "Insufficient Tickets Left", checkTixResponse, "Yes", "No").show();
-                        showDialog(getActivity(), "Insufficient Tickets Left", "Click continue to edit the tickets selection", "Continue", "Back To Events List").show();
+                        showDialog(getActivity(), "Insufficient Tickets Left", arr[0], "Continue", "Back To Events List").show();
                         return;
                     }
                 } catch (InterruptedException e) {
@@ -131,13 +137,8 @@ public class viewTicketList extends Fragment {
                 ConnectionInformation.getInstance().setNumList(spinList);
 
 
-
-
-
-
-
                 System.out.println("TOTAL PRICE IS      " + sum);
-                Toast.makeText(getActivity(),"Checking out..."+ sum, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Checking out..." + sum, Toast.LENGTH_SHORT).show();
 
 
                 // intent.putParcelableArrayListExtra();
@@ -146,41 +147,9 @@ public class viewTicketList extends Fragment {
         });
 
 
-
-     /*   Button removeBtn = (Button) myView.findViewById(R.id.ButtonRemoveFromCart);
-
-        removeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str=new String();
-                for(int i=0;i<TicketList2.size();i++) {
-                    str=str.concat(TicketList2.get(i).getName());
-
-                }
-                Toast.makeText(getActivity(), "Ticket LISTING 2: " + str, Toast.LENGTH_SHORT).show();
-                dataAdapter = new viewTicketList.MyCustomAdapter(getActivity(), R.layout.ticket_info, TicketList2);
-                ListView listView = (ListView) myView.findViewById(R.id.listView1);
-                // Assign adapter to ListView
-                listView.setAdapter(dataAdapter);
-
-            }
-        });*/
-
-    /*    Button proceedToCheckOut = (Button) myView.findViewById(R.id.proceedToCheckOut);
-        proceedToCheckOut.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), dashboard.class);
-                // intent.putParcelableArrayListExtra();
-
-
-            }
-        });*/
-
         return myView;
     }
+
     private AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
         AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
         downloadDialog.setTitle(title);
@@ -201,19 +170,13 @@ public class viewTicketList extends Fragment {
     }
 
     private void goBackEventlist() {
-        Intent intent = new Intent(getActivity(),dashboard.class);
+        Intent intent = new Intent(getActivity(), dashboard.class);
         intent.putExtra("key2", "goToEventList");
         startActivity(intent);
     }
 
 
-
-
-
     viewTicketList.MyCustomAdapter dataAdapter = null;
-
-
-
 
 
     private class viewAllTickets extends AsyncTask<Void, Void, String> {
@@ -259,6 +222,13 @@ public class viewTicketList extends Fragment {
 
 
         protected void onPostExecute(String greeting) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            displayListView();
+            progressDialog.dismiss();
 
             Log.d("TAG", "DO POST EXECUTE");
         }
@@ -266,6 +236,7 @@ public class viewTicketList extends Fragment {
     }
 
     //Ticket LISTING
+
     private void displayListView() {
         //Array list of Tickets
 
@@ -276,12 +247,46 @@ public class viewTicketList extends Fragment {
         ListView listView = (ListView) myView.findViewById(R.id.listViewTicket);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
+        Collections.sort(TicketList, new Comparator<Ticket>() {
+            public int compare(Ticket s1, Ticket s2) {
+                System.out.println(s1.getName());
+                return (s1.getName().compareTo(s2.getName()));
+            }
+        });
+        dataAdapter.notifyDataSetChanged();
+
+
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("i is " + i);
+                System.out.println("l is " + l);
+                System.out.println("FINAL" + view.toString());
+                System.out.println("FINALFUCKINGLY" + view.getTag().toString());
+                System.out.println("FINAL2" + adapterView.getTag().toString());
+                System.out.println("FINAL3" + adapterView.getSelectedItem().toString());
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                System.out.println("FUCK YOU");
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                    /*for(Spinner s : spinners){
+                        // s.getSelectedItem()
+                    }*/
+
                 // When clicked, show a toast with the TextView text
+
                 Ticket Ticket = (Ticket) parent.getItemAtPosition(position);
+
                 Toast.makeText(getActivity(),
                         "Clicked on Row: " + Ticket.getName(),
                         Toast.LENGTH_LONG).show();
@@ -293,12 +298,28 @@ public class viewTicketList extends Fragment {
     private class MyCustomAdapter extends ArrayAdapter<Ticket> {
 
         private ArrayList<Ticket> TicketList;
+        Set<ViewHolder> holderz = new HashSet<>();
         viewTicketList.MyCustomAdapter.ViewHolder holder = null;
+
+
         public MyCustomAdapter(Context context, int textViewResourceId,
                                ArrayList<Ticket> TicketList) {
             super(context, textViewResourceId, TicketList);
+
+
             this.TicketList = new ArrayList<>();
-            this.TicketList.addAll(TicketList);
+            // System.out.println("jinfuckran");
+            for (Ticket tix : TicketList) {
+                this.TicketList.add(tix);
+            }
+            Collections.sort(this.TicketList, new Comparator<Ticket>() {
+                public int compare(Ticket s1, Ticket s2) {
+                    System.out.println(s1.getName());
+                    return (s1.getName().compareTo(s2.getName()));
+                }
+            });
+
+            // System.out.println("jinfuckranagain");
         }
 
         private class ViewHolder {
@@ -311,19 +332,24 @@ public class viewTicketList extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
 
-
             Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
                 LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.ticket_info, null);
-
                 holder = new viewTicketList.MyCustomAdapter.ViewHolder();
-                holder.ticketName = (TextView)convertView.findViewById(R.id.ticketName);
+                holder.ticketName = (TextView) convertView.findViewById(ticketName);
                 holder.code2 = (TextView) convertView.findViewById(R.id.code2);
                 // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.spinner = (Spinner) convertView.findViewById(R.id.spinnerTicketList);
+                //  holder.spinner.setTag(Integer.valueOf(holder.ticketName.toString()));
+                //Ticket ttt = TicketList.get(position);
+                holder.spinner.setTag(position);
 
+                if (holder.ticketName != null && holder.ticketName.getText() != null && holder.ticketName.getText().toString() != null
+                        && holder.spinner != null && holder.spinner.getSelectedItem() != null) {
+                    holderz.add(holder);
+                }
 
                 //change to spinner
                 convertView.setTag(holder);
@@ -345,7 +371,23 @@ public class viewTicketList extends Fragment {
 */
 
             } else {
+                System.out.println("==========================");
+                for (ViewHolder hh : holderz) {
+                    ////  System.out.println("ticket is" + hh.ticketName.toString());
+                    // System.out.println("ticket is" + hh.ticketName.getText().toString());
+                    // System.out.println("thig is " + hh.spinner.getSelectedItem().toString());
+
+                    for (Ticket tix : TicketList) {
+                        //if ( tix.getName().equals(hh.ticketName.getText().toString())&& !hh.spinner.getSelectedItem().toString().equals("0")){
+                        if (tix.getName().equals(hh.ticketName.getText().toString())) {
+                            System.out.println("Assign" + hh.ticketName.getText().toString() + " with number of " + hh.spinner.getSelectedItem().toString());
+                            tix.setNumTix(Integer.valueOf(hh.spinner.getSelectedItem().toString()));
+                        }
+                    }
+                }
                 holder = (viewTicketList.MyCustomAdapter.ViewHolder) convertView.getTag();
+                //this.TicketList.get(position).setNumTix(Integer.valueOf(holder.spinner.getSelectedItem().toString()));
+
             }
 
             Ticket Ticket = TicketList.get(position);
@@ -359,10 +401,25 @@ public class viewTicketList extends Fragment {
 
         }
 
-        public String getSpinnerItem(int position){
-            return holder.spinner.getItemAtPosition(position).toString();
+        public ArrayList<Ticket> getTicketListOut() {
+            return this.TicketList;
         }
 
+        public String getSpinnerItem(int position) {
+            System.out.println("---------------------");
+            System.out.println("---------------------");
+            this.holder.code2.getTag();
+            //  System.out.println(this.holder.spinner.getTag(position).getSelectedItem().toString());
+
+            System.out.println("---------------------");
+            System.out.println("---------------------");
+            // System.out.println("DEBUG1" + holder.spinner.getAdapter().getItem(position).toString());
+            //ken//
+            // System.out.println("kendebug" + holderz.get(position).spinner.getSelectedItem().toString());
+            // return holderz.get(position).spinner.getSelectedItem().toString();
+            return "10";
+            // return holder.spinner.getItemAtPosition(position).toString();
+        }
 
 
     }
@@ -400,11 +457,11 @@ public class viewTicketList extends Fragment {
             try {
                 JSONArray jar = new JSONArray();
 
-                for(int i=0;i<ticketSelected.size();i++){
+                for (int i = 0; i < TicketList.size(); i++) {
                     JSONObject obj = new JSONObject();
-                    obj.put("categoryId", ticketSelected.get(i).getCode());
-                    obj.put("numTickets", ticketSelected.get(i).getNumTix());
-                    System.out.println("CODE: " + ticketSelected.get(i).getCode() + "NUM TIX: " + ticketSelected.get(i).getNumTix());
+                    obj.put("categoryId", TicketList.get(i).getCode());
+                    obj.put("numTickets", TicketList.get(i).getNumTix());
+                    System.out.println("CODE: " + TicketList.get(i).getCode() + "NUM TIX: " + TicketList.get(i).getNumTix());
                     jar.put(obj);
                 }
 
@@ -426,8 +483,6 @@ public class viewTicketList extends Fragment {
                 ResponseEntity<String> responseEntity = restTemplate.exchange(url2, HttpMethod.POST, request2, String.class);
 
                 checkTixResponse = responseEntity.getBody().toString();
-
-
 
 
             } catch (Exception e) {
