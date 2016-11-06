@@ -40,10 +40,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.paypal.android.sdk.cy.i;
 import static kenneth.jf.siaapp.R.id.textView;
@@ -67,12 +71,12 @@ public class viewTicketList extends Fragment {
     String spinnerSelected;
     ArrayList<String> spinList;
     ProgressDialog progressDialog;
+    SweetAlertDialog errorAlert;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(ticket_list, container, false);
-
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
         progressDialog.setIndeterminate(true);
@@ -98,6 +102,7 @@ public class viewTicketList extends Fragment {
 
                 spinList = new ArrayList<>();
                 TicketList = dataAdapter.getTicketListOut();
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < TicketList.size(); i++) {
                     /*if ( TicketList.get(i).getNumTix() == 0){
                         continue;
@@ -112,7 +117,18 @@ public class viewTicketList extends Fragment {
                     //TicketList.get(i).setNumTix(Integer.valueOf(spinnerSelected));
                     //ticketSelected.add(TicketList.get(i));
                     System.out.println(TicketList.get(i).getName() + " " + TicketList.get(i).getNumTix());
+                    if ( TicketList.get(i).getNumTix() != 0) {
+                        sb.append(TicketList.get(i).getNumTix() + " " + TicketList.get(i).getName() + " ( $" + TicketList.get(i).getPrice() + " )");
+                        sb.append("\n");
+                    }
                     sum += (Double.valueOf(TicketList.get(i).getPrice() * TicketList.get(i).getNumTix()));
+                    if (sum < 0.01) {
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("Error!")
+                                .setContentText("You have not selected any tickets!")
+                                .show();
+
+                        return;
+                    }
                 }
 
                 //NEED TO CHECK IF TICKETSSSSSSS are available
@@ -139,6 +155,7 @@ public class viewTicketList extends Fragment {
                 Intent intent = new Intent(getActivity(), dashboard.class);
                 intent.putExtra("key2", "ticketSum");
                 intent.putExtra("price", String.valueOf(sum));
+                intent.putExtra("summary",sb.toString() + "\n\n\n" + "Total - $SGD " + sum);
                 System.err.println("ARRAYLIST: " + TicketList.size());
                 startActivity(intent);
                 ConnectionInformation.getInstance().setTicketList(TicketList);
@@ -317,7 +334,6 @@ public class viewTicketList extends Fragment {
         private ArrayList<Ticket> TicketList;
         Set<ViewHolder> holderz = new HashSet<>();
         viewTicketList.MyCustomAdapter.ViewHolder holder;
-        boolean skip = true;
 
 
         public MyCustomAdapter(Context context, int textViewResourceId,
@@ -353,8 +369,10 @@ public class viewTicketList extends Fragment {
 
             Log.v("ConvertView", String.valueOf(position));
             final Ticket Ticket = TicketList.get(position);
+            System.out.println("DEBUG" + Ticket.getName() + "  " + Ticket.getNumTix() + Ticket.toString());
+
             if (convertView == null) {
-                System.out.println(parent.getFocusedChild().toString() + "    " + position +  "   " + parent.getChildCount() +  "    " + parent.toString());
+                System.out.println("POS" + "    " + position + "   " + parent.getChildCount() + "    " + parent.toString());
                 counter++;
                 LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.ticket_info, null);
@@ -367,7 +385,6 @@ public class viewTicketList extends Fragment {
                 // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.spinner = (Spinner) convertView.findViewById(R.id.spinnerTicketList);
                 holder.spinner.setDropDownWidth(155);
-
 
 
                 try {
@@ -387,13 +404,12 @@ public class viewTicketList extends Fragment {
                 //  holder.spinner.setTag(Integer.valueOf(holder.ticketName.toString()));
                 //Ticket ttt = TicketList.get(position);
                 holder.spinner.setTag(position);
-System.out.println("TTTTTT" + holder.ticketName.getText().toString() + "PPP");
-                if ( holder.ticketName != null && holder.ticketName.getText() != null && holder.ticketName.getText().toString() != null
-                        && holder.spinner != null  &&  holder.spinner.getSelectedItem() != null) {
-                    System.out.println("adding holder:" +holder.ticketName.getText().toString()+"T  "+ holder.toString());
+                System.out.println("TTTTTT" + holder.ticketName.getText().toString() + "PPP");
+                if (holder.ticketName != null && holder.ticketName.getText() != null && holder.ticketName.getText().toString() != null
+                        && holder.spinner != null && holder.spinner.getSelectedItem() != null) {
+                    System.out.println("adding holder:" + holder.ticketName.getText().toString() + "T  " + holder.toString());
                     holderz.add(holder);
                 }
-                skip = false;
 
                 //change to spinner
                 convertView.setTag(holder);
@@ -429,40 +445,51 @@ System.out.println("TTTTTT" + holder.ticketName.getText().toString() + "PPP");
                     }
                 });*/
 
-               // System.out.println(holder.spinner.getOnItemSelectedListener().toString());
-
-
+                // System.out.println(holder.spinner.getOnItemSelectedListener().toString());
+                Map<Ticket, Boolean> fuckthisshit = new HashMap<>();
+                for (Ticket t : TicketList) {
+                    fuckthisshit.put(t, true);
+                }
                 for (ViewHolder hh : holderz) {
                     ////  System.out.println("ticket is" + hh.ticketName.toString());
                     // System.out.println("ticket is" + hh.ticketName.getText().toString());
                     // System.out.println("thig is " + hh.spinner.getSelectedItem().toString());
+                    System.out.println("==================");
 
                     for (Ticket tix : TicketList) {
                         //if ( tix.getName().equals(hh.ticketName.getText().toString())&& !hh.spinner.getSelectedItem().toString().equals("0")){
                         if (tix.getName().equals(hh.ticketName.getText().toString())) {
-                            System.out.println("Assign" + hh.ticketName.getText().toString() + " with number of " + hh.spinner.getSelectedItem().toString());
-                            tix.setNumTix(Integer.valueOf(hh.spinner.getSelectedItem().toString()));
+                            if (fuckthisshit.get(tix)) {//always have duplicate
+                                System.out.println("Assign" + hh.ticketName.getText().toString() + " with number of " + hh.spinner.getSelectedItem().toString() + "CurrentPS" + position);
+                                tix.setNumTix(Integer.valueOf(hh.spinner.getSelectedItem().toString()));
+                                if (Integer.valueOf(hh.spinner.getSelectedItem().toString()) > 0) {
+                                    //System.out.println("assigned the value of " + Integer.valueOf(hh.spinner.getSelectedItem().toString()) + " and not assigning anymore");
+                                    // assign = false;
+                                    fuckthisshit.put(tix, false);
+                                }
+                                // assigned = Integer.valueOf(hh.spinner.getSelectedItem().toString());
+                            }
                         }
                     }
                 }
 
-                                                             //this.TicketList.get(position).setNumTix(Integer.valueOf(holder.spinner.getSelectedItem().toString()));
-
-                                                         }
-
-
-                        holder.ticketName.setText(Ticket.getName());
-                holder.code2.setText(" ( $" + String.valueOf(Ticket.getPrice()) + " )");
-                //holder.name.setChecked(Ticket.isSelected());
-                holder.code2.setTag(Ticket);
-
-                return convertView;
+                //this.TicketList.get(position).setNumTix(Integer.valueOf(holder.spinner.getSelectedItem().toString()));
 
             }
 
-            public ArrayList<Ticket> getTicketListOut () {
-                return this.TicketList;
-            }
+
+            holder.ticketName.setText(Ticket.getName());
+            holder.code2.setText(" ( $" + String.valueOf(Ticket.getPrice()) + " )");
+            //holder.name.setChecked(Ticket.isSelected());
+            holder.code2.setTag(Ticket);
+
+            return convertView;
+
+        }
+
+        public ArrayList<Ticket> getTicketListOut() {
+            return this.TicketList;
+        }
 
         public String getSpinnerItem(int position) {
             System.out.println("---------------------");

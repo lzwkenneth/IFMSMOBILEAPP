@@ -30,7 +30,9 @@ public class paymentSummary extends Fragment {
         myView = inflater.inflate(payment_summary,container,false);
         tixSum = (TextView)myView.findViewById(R.id.sum);
         final String sum = getActivity().getIntent().getStringExtra("price");
-        tixSum.setText(sum);
+        final String summary = getActivity().getIntent().getStringExtra("summary");
+        tixSum.setText(summary);
+        tixSum.setTextSize(21);
 
         toPayPal = (Button)myView.findViewById(R.id.goToPayPal);
         toPayPal.setOnClickListener(new View.OnClickListener() {

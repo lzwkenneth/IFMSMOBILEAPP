@@ -50,6 +50,8 @@
         android:layout_alignBottom="@+id/descIcon"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="11dp"
+        android:maxLines = "2"
+        android:scrollbars = "vertical"
         android:textSize="14dp"
         android:layout_toEndOf="@+id/descIcon" />
 

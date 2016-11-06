@@ -33,7 +33,7 @@
 
         <Button
             android:id="@+id/buttonPay"
-            android:text="Pay Now"
+            android:text="Confirm Payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

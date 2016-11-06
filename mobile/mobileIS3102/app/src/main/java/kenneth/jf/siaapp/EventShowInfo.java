@@ -72,6 +72,7 @@ public class EventShowInfo extends Fragment {
                                 startDate = (TextView) myView.findViewById(R.id.eventStartDate);
                                 endDate = (TextView) myView.findViewById(R.id.eventEndDate);
                                 desc = (TextView) myView.findViewById(R.id.eventDescription);
+                                desc.setMovementMethod(new ScrollingMovementMethod());
                                 address = (TextView) myView.findViewById(R.id.eventAddress);
                                 address.setMovementMethod(new ScrollingMovementMethod());
                                 img = (ImageView) myView.findViewById(R.id.ttttt);
@@ -82,7 +83,7 @@ public class EventShowInfo extends Fragment {
 
                                 title.setText(eventDetail.getTitle());
                                 // type.setText(eventDetail.getType());
-                                startDate.setText(eventDetail.getStartDate() + " -");
+                                startDate.setText(eventDetail.getStartDate() + " to");
                                 endDate.setText(eventDetail.getEndDate());
                                 StringBuilder sb = new StringBuilder();
                                 for (String s : eventDetail.getAddress()) {

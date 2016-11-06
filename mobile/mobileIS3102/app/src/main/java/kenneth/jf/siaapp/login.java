@@ -33,6 +33,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
@@ -94,6 +95,18 @@ public class login extends AppCompatActivity {
             requestFactory.setHttpClient(httpClient);
 
             RestTemplate restTemplate2 = new RestTemplate(requestFactory);
+
+            restTemplate2.setErrorHandler(new DefaultResponseErrorHandler() {
+                protected boolean hasError(HttpStatus statusCode) {
+                    Log.d("STATUS CODE IS ", statusCode.toString());
+                    if (statusCode.equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
+                        return false;
+                    } else if (statusCode.equals(HttpStatus.OK)) {
+                        return false;
+                    }
+                    return true;
+                }
+            });
             //Set basic connection information
             ConnectionInformation.getInstance().setRestTemplate(restTemplate2);
             //SET ADDRESS OF THE SERVER

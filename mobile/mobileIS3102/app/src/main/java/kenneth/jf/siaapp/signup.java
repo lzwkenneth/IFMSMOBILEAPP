@@ -174,17 +174,7 @@ public class signup extends AppCompatActivity {
             Log.d("TAG", "DO IN BACKGROUND");
             try {
                 RestTemplate restTemplate = ConnectionInformation.getInstance().getRestTemplate();
-                restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
-                    protected boolean hasError(HttpStatus statusCode) {
-                        Log.d("STATUS CODE IS ", statusCode.toString());
-                        if (statusCode.equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
-                            return false;
-                        } else if (statusCode.equals(HttpStatus.OK)) {
-                            return false;
-                        }
-                        return true;
-                    }
-                });
+
                 HttpHeaders headers2 = new HttpHeaders();
                 List<MediaType> list = new ArrayList<MediaType>();
                 list.add(MediaType.APPLICATION_JSON);

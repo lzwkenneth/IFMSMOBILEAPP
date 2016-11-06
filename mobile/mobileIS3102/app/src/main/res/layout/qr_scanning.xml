@@ -26,15 +26,28 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:onClick="scanQR"
-        android:text="Click here to scan for discounts"
-        android:textSize="18dp">
+        android:text="Click to scan discounts"
+        android:textSize="18dp"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:backgroundTint="@color/material_deep_teal_50"
+        android:elevation="8dp">
     </Button>
 
     <TextView
         android:text="No discounts yet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center_horizontal"
         android:id="@+id/discountView" />
+
+    <TextView
+        android:text=" "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dip"
+        android:gravity="center_horizontal"
+        android:id="@+id/msg" />
 
     <!--    <Button
             android:id="@+id/scanner2"

@@ -24,10 +24,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:text="Choose your feedback type"
+            android:layout_weight="0.51"/>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:text="Type your feedback here"
-            android:textStyle="italic"
-            android:layout_gravity="top"/>
+            android:background="#fff"
+            android:layout_gravity="top"
+            android:entries="@array/event_array"
+            android:prompt="@string/category" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -45,17 +54,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="Choose your feedback type"
-            android:layout_weight="1"/>
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:background="#fff"
-            android:layout_gravity="top"
-            android:entries="@array/event_array"
-            android:prompt="@string/category" />
+            android:text="Type your feedback here"
+            android:textStyle="italic"
+            android:layout_gravity="top"/>
 
         <Button
             android:layout_width="match_parent"
