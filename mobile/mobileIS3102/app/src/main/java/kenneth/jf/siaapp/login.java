@@ -178,7 +178,6 @@ public class login extends AppCompatActivity {
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Authenticating");
-        pDialog.setCancelable(false);
         pDialog.show();
 
         username = _emailText.getText().toString();
@@ -239,12 +238,16 @@ public class login extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         //finish();
+
         Intent intent = new Intent(getApplicationContext(), dashboard.class);
+        pDialog.cancel();
         startActivity(intent);
     }
 
     public void onLoginFailed() {
-
+        if ( pDialog!=null) {
+            pDialog.cancel();
+        }
         new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                 .setTitleText("Oops...")
                 .setContentText("Something went wrong!")
@@ -351,6 +354,7 @@ public class login extends AppCompatActivity {
                     ConnectionInformation.getInstance().setIsAuthenticated(false);
                     Log.d("TAGRESPONSE", responseEntity.getStatusCode().toString());
                 }
+                Thread.sleep(1200);
 
 
             } catch (Exception e) {
@@ -362,7 +366,8 @@ public class login extends AppCompatActivity {
 
 
         protected void onPostExecute(String greeting) {
-            pDialog.dismissWithAnimation();
+
+
             Log.d("TAG", "DO POST EXECUTE");
             if (ConnectionInformation.getInstance().getAuthenticated()) {
                 Log.d("TAG", "AUTHENTICATED");

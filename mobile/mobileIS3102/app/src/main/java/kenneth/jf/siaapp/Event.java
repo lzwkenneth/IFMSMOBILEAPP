@@ -12,9 +12,27 @@ public class Event implements Parcelable
 {
     Long code; // represents id
     String name = null;
+    String filePath;
     String price = null;
+    boolean hasTicket;
     int index = 0;
     boolean selected = false;
+
+    public boolean isHasTicket() {
+        return hasTicket;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void setHasTicket(boolean hasTicket) {
+        this.hasTicket = hasTicket;
+    }
 
     public Event(){
         super();

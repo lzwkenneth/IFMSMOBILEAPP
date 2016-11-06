@@ -1,6 +1,8 @@
 package kenneth.jf.siaapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +34,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.R.attr.password;
 
@@ -39,12 +42,20 @@ public class signup extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     private String exceptionMessage = "";
     private boolean signUp = false;
+    SweetAlertDialog pDialogl;
+    SweetAlertDialog pDialogs;
+    SweetAlertDialog pDialoge;
 
-    @InjectView(R.id.input_name) EditText _nameText;
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_signup) Button _signupButton;
-    @InjectView(R.id.link_login) TextView _loginLink;
+    @InjectView(R.id.input_name)
+    EditText _nameText;
+    @InjectView(R.id.input_email)
+    EditText _emailText;
+    @InjectView(R.id.input_password)
+    EditText _passwordText;
+    @InjectView(R.id.btn_signup)
+    Button _signupButton;
+    @InjectView(R.id.link_login)
+    TextView _loginLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,21 +89,22 @@ public class signup extends AppCompatActivity {
 
 
         _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(signup.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        pDialogs = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+        pDialoge = new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE);
+        pDialogl = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialogl.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialogl.setTitleText("Signing up...");
+        pDialogl.setCancelable(false);
+        pDialogl.show();
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
-        new registerTask().execute(name,email,password);
+        new registerTask().execute(name, email, password);
 
-        new android.os.Handler().postDelayed(
+        /*new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
@@ -105,19 +117,22 @@ public class signup extends AppCompatActivity {
                         }
                         progressDialog.dismiss();
                     }
-                }, 2100);
+                }, 2100);*/
     }
 
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        Toast.makeText(this, "SIGN UP IS SUCCESSFUL", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(getApplicationContext(), login.class);
+        startActivity(i);
+        //Toast.makeText(this, "SIGN UP IS SUCCESSFUL", Toast.LENGTH_LONG).show();
         //finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Signup failed. " , Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), "Signup failed. ", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -159,17 +174,17 @@ public class signup extends AppCompatActivity {
             Log.d("TAG", "DO IN BACKGROUND");
             try {
                 RestTemplate restTemplate = ConnectionInformation.getInstance().getRestTemplate();
-                restTemplate.setErrorHandler(new DefaultResponseErrorHandler(){
+                restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
                     protected boolean hasError(HttpStatus statusCode) {
-                        Log.d("STATUS CODE IS " , statusCode.toString());
-                        if ( statusCode.equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
+                        Log.d("STATUS CODE IS ", statusCode.toString());
+                        if (statusCode.equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
                             return false;
-                        }
-                        else if ( statusCode.equals(HttpStatus.OK)){
+                        } else if (statusCode.equals(HttpStatus.OK)) {
                             return false;
                         }
                         return true;
-                    }});
+                    }
+                });
                 HttpHeaders headers2 = new HttpHeaders();
                 List<MediaType> list = new ArrayList<MediaType>();
                 list.add(MediaType.APPLICATION_JSON);
@@ -188,25 +203,23 @@ public class signup extends AppCompatActivity {
                 request.put("name", name);
                 request.put("username", username);
                 request.put("password", password);
-                Log.d("TAG",request.toString());
+                Log.d("TAG", request.toString());
 
-                HttpEntity<String> request2 = new HttpEntity<String>(request.toString(),headers2);
+                HttpEntity<String> request2 = new HttpEntity<String>(request.toString(), headers2);
                 Log.d("TAGGGGGGGGREQUEST", headers2.getAccept().toString());
                 String url2 = "https://" + ConnectionInformation.getInstance().getUrl() + "/registerNewUser";
                 Log.d("TAGGGGGGGGREQUEST", request2.getBody().toString());
                 ResponseEntity<String> responseEntity = restTemplate.exchange(url2, HttpMethod.POST, request2, String.class);
-                Log.d("TAG",responseEntity.getStatusCode().toString());
-                if ( responseEntity.getStatusCode().equals(HttpStatus.OK)){
-                    Log.d("TAG","SIGNUP OK!");
+                Log.d("TAG", responseEntity.getStatusCode().toString());
+                if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+                    Log.d("TAG", "SIGNUP OK!");
                     signUp = true;
-                }
-                else if ( responseEntity.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR) ){
+                } else if (responseEntity.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
                     signUp = false;
-                    Log.d("TAG",responseEntity.getBody().toString());
+                    Log.d("TAG", responseEntity.getBody().toString());
                     exceptionMessage = responseEntity.getBody().toString();
-                }
-                else{
-                    Log.d("TAG",responseEntity.getBody().toString());
+                } else {
+                    Log.d("TAG", responseEntity.getBody().toString());
                 }
 
             } catch (Exception e) {
@@ -218,6 +231,35 @@ public class signup extends AppCompatActivity {
 
 
         protected void onPostExecute(String greeting) {
+
+            pDialogl.dismissWithAnimation();
+
+            if (signUp) {
+
+                pDialogs.setTitleText("Congratulations!")
+                        .setContentText("Sign up successful!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                pDialogs.cancel();
+                                onSignupSuccess();
+                            }
+                        })
+                        .show();
+            } else {
+
+                pDialoge.setTitleText("Sign up unsuccessful")
+                        .setContentText(exceptionMessage.substring(1,exceptionMessage.length()-1))
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                onSignupFailed();
+                                pDialoge.cancel();
+                            }
+                        })
+                        .show();
+            }
+
             Log.d("TAG", "DO POST EXECUTE");
         }
 

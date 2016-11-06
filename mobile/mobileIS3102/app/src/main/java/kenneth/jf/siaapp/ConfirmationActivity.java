@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import static android.R.attr.id;
+
 
 //confirm payment
 public class ConfirmationActivity extends AppCompatActivity {
@@ -113,13 +115,13 @@ public class ConfirmationActivity extends AppCompatActivity {
     private void showDetails(JSONObject jsonDetails, String paymentAmount) throws JSONException {
         //Views
         TextView textViewId = (TextView) findViewById(R.id.paymentId);
-        TextView textViewStatus= (TextView) findViewById(R.id.paymentStatus);
+        //TextView textViewStatus= (TextView) findViewById(R.id.paymentStatus);
         TextView textViewAmount = (TextView) findViewById(R.id.paymentAmount);
 
         //Showing the details from json object
-        textViewId.setText(jsonDetails.getString("id"));
-        textViewStatus.setText(jsonDetails.getString("state"));
-        textViewAmount.setText(paymentAmount+" USD");
+        textViewId.setText("Payment ID : " + jsonDetails.getString("id"));
+        //textViewStatus.setText(jsonDetails.getString("state"));
+        textViewAmount.setText(paymentAmount+" SGD");
         paymentId = jsonDetails.getString("id");
         if(jsonDetails.getString("state").equals("approved")){
 

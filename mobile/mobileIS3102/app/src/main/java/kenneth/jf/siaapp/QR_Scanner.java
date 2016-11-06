@@ -4,9 +4,11 @@ package kenneth.jf.siaapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,26 +33,51 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.ExecutionException;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import kenneth.jf.siaapp.R;
 
 import static android.app.Activity.RESULT_OK;
 
+import static kenneth.jf.siaapp.R.id.scanner;
 import static kenneth.jf.siaapp.R.layout.qr_scanning;
 
 public class QR_Scanner extends Fragment {
     View myView;
+    SweetAlertDialog pDialog;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     String discountCode;
+    TextView dsView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(qr_scanning,container,false);
+        myView = inflater.inflate(qr_scanning, container, false);
+        pDialog = new SweetAlertDialog(this.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading QR Scanner");
+        progressDialog.show();
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                       // scanQR(myView);
+                        // onLoginFailed();
+                        progressDialog.dismiss();
+                    }
+                }
+
+                , 500);
+
+        // ImageView imageView = (ImageView)myView.findViewById(R.id.ttttt);
         Button scanner = (Button)myView.findViewById(R.id.scanner);
+        dsView = (TextView)myView.findViewById(R.id.discountView);
         scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scanQR(myView);
             }
         });
+
 
        /* Button scanner1 = (Button)myView.findViewById(R.id.scanner2);
         scanner.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +88,9 @@ public class QR_Scanner extends Fragment {
         });*/
 
 
-
         return myView;
     }
+
 
     //product barcode mode
 /*    public void scanBar(View v) {
@@ -111,17 +143,26 @@ public class QR_Scanner extends Fragment {
 
     //on ActivityResult method
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        System.out.println("ACTVITIY DONE OK");
         if (requestCode == 0) {
+            System.out.println("ACTVITIY DONE OK" + requestCode);
             if (resultCode == RESULT_OK) {
                 //get the extras that are returned from the intent
                 discountCode = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 //Toast toast = Toast.makeText(this.getActivity(), "Content:" + discountCode + " Format:" + format, Toast.LENGTH_LONG);
                 //toast.show();
+                System.out.println("AFtER ok " + discountCode + "   " + format);
 
                 try {
+                    System.out.println("TRYYYACTVITIY DONE OK");
+                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    pDialog.setTitleText("Getting discount...");
+                    pDialog.show();
                     new viewDiscount().execute().get();
-                    Toast.makeText(getActivity(), "DISCOUNT CODE: "+ discountObj.getDiscountMessage(),Toast.LENGTH_LONG).show();
+                    System.out.println("DISCOUNT OF " + discountObj.getDiscountMessage());
+                    dsView.setText(discountObj.getDiscountMessage());
+                    Toast.makeText(getActivity(), "DISCOUNT CODE: " + discountObj.getDiscountMessage(), Toast.LENGTH_LONG).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -132,9 +173,11 @@ public class QR_Scanner extends Fragment {
             }
         }
     }
+
     private RestTemplate restTemplate = ConnectionInformation.getInstance().getRestTemplate();
     private String url = ConnectionInformation.getInstance().getUrl();
     Discount discountObj;
+
     private class viewDiscount extends AsyncTask<Void, Void, String> {
 
 
@@ -144,19 +187,16 @@ public class QR_Scanner extends Fragment {
                 JSONObject obj = new JSONObject();
                 obj.put("discount", discountCode);  //must be discount code  == "12345"
                 //obj.put("discount", "12345");
-                HttpEntity<String> request2 = new HttpEntity<String>(obj.toString(),ConnectionInformation.getInstance().getHeaders());
+                HttpEntity<String> request2 = new HttpEntity<String>(obj.toString(), ConnectionInformation.getInstance().getHeaders());
                 Log.d("DISCOUNT REQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
                 String url2 = "https://" + url + "/viewDiscount";
 
                 Log.d("TAG", "BEFORE VERIFYING" + restTemplate.getMessageConverters().toString());
-                Log.d("TAG",request2.toString());
+                Log.d("TAG", request2.toString());
                 // Log.d("TAG",request2.getBody());
                 ResponseEntity<Discount> responseEntity = restTemplate.exchange(url2, HttpMethod.POST, request2, Discount.class);
                 discountObj = responseEntity.getBody();
                 System.out.println("RESPONSE ENTITY: " + responseEntity.getBody().getDiscountMessage());
-
-
-
 
 
             } catch (Exception e) {
@@ -168,13 +208,11 @@ public class QR_Scanner extends Fragment {
         }
 
         protected void onPostExecute(String greeting) {
-
+            pDialog.dismissWithAnimation();
             Log.d("TAG", "DO POST EXECUTE");
 
         }
     }
-
-
 
 
 }

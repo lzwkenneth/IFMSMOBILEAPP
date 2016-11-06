@@ -15,6 +15,26 @@ public class EventListObject {
     private Long id;
     @JsonProperty("event_title")
     private String eventName;
+    @JsonProperty("hasTicket")
+    private boolean hasTicket;
+    @JsonProperty("filePath")
+    private String filePath;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public boolean isHasTicket() {
+        return hasTicket;
+    }
+
+    public void setHasTicket(boolean hasTicket) {
+        this.hasTicket = hasTicket;
+    }
 
     public long getId() {
         return id;

@@ -6,8 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -24,6 +27,26 @@ import android.content.Intent;
 
 import com.google.zxing.BarcodeFormat;
 
+import org.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static android.R.attr.password;
 import static android.content.Context.WINDOW_SERVICE;
 import static android.content.Intent.getIntent;
 
@@ -36,12 +59,14 @@ public class test extends Fragment implements View.OnClickListener {
     TableLayout tl;
     TableRow tr;
     TextView companyTV,valueTV,testTV;
+    VerifyTicket verifyTix;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         myView = inflater.inflate(R.layout.test,container,false);
+        verifyTix = new VerifyTicket();
         //tl = (TableLayout) myView.findViewById(R.id.maintable);
 
         qrInput = (TextView) myView.findViewById(R.id.qrInput);
@@ -80,6 +105,7 @@ public class test extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        callAsynchronousTask();
         return myView;
     }
 
@@ -230,6 +256,80 @@ public class test extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    public void callAsynchronousTask() {
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        try {
+                            //System.out.println("it ran");
+
+                            // PerformBackgroundTask this class is the class that extends AsynchTask
+                            verifyTix.execute();
+
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(doAsynchronousTask, 0, 5000); //execute in every 50000 ms
+    }
+
+
+    private class VerifyTicket extends AsyncTask<Void, Void, String> {
+
+        protected String doInBackground(Void... params) {
+            Log.d("TAG", "DO IN BACKGROUND");
+            try {
+                System.out.println("VERIFYING TIX WITH SERVER");
+                /*HttpEntity<String> request2 = new HttpEntity<String>(ConnectionInformation.getInstance().getHeaders());
+                Log.d("TAGGGGGGGGREQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
+                String url2 = "https://" + url + "/tixViewAllEvents";
+
+                Log.d("TAG", "BEFORE VERIFYING" + restTemplate.getMessageConverters().toString());
+                Log.d("TAG", request2.toString());
+                // Log.d("TAG",request2.getBody());
+                ResponseEntity<EventListObject[]> responseEntity = restTemplate.exchange(url2, HttpMethod.GET, request2, EventListObject[].class);
+
+                for (EventListObject m : responseEntity.getBody()) {
+                    Event e = new Event();
+                    e.setName(m.getEventName());
+                    e.setCode(m.getId());
+                    e.setSelected(false);
+                    e.setHasTicket(m.isHasTicket());
+                    e.setFilePath(m.getFilePath());
+                    EventList.add(e);
+                    //return list
+                    Log.d("loopforeventlistobject", m.toString());
+                }
+
+                Collections.sort(EventList, new Comparator<Event>() {
+                    public int compare(Event s1, Event s2) {
+                        System.out.println("Event sorting" + s1.getName());
+                        return (s1.getName().compareTo(s2.getName()));
+                    }
+                });
+*/
+            } catch (Exception e) {
+                Log.e("TAG", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+
+        protected void onPostExecute(String greeting) {
+            Log.d("TAG", "DO POST EXECUTE");
+
+        }
 
     }
 

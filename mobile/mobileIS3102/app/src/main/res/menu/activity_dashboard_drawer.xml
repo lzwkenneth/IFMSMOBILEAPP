@@ -41,7 +41,7 @@
         <item
             android:id="@+id/qr_scanner"
             android:icon="@drawable/beacons"
-            android:title="SCAN FOR DISCOUNT USING QR CODE" />
+            android:title="Scan for discount" />
         <item
             android:id="@+id/first_frag"
             android:icon="@drawable/beacons"

@@ -21,18 +21,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:textSize="13sp"/>
-    <Button
-        android:id="@+id/viewEventInfo"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_toLeftOf="@+id/toTicketList"
-        android:text="More Info">
 
-    </Button>
     <Button
         android:id="@+id/toTicketList"
         android:text="Buy Tickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        style="@android:style/Widget.Holo.Button.Small" />
+
+    <Button
+        android:id="@+id/viewEventInfo"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="More Info"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/toTicketList"
+        style="@android:style/Widget.Holo.Button.Small">
+
+    </Button>
 </RelativeLayout>

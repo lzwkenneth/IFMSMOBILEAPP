@@ -34,6 +34,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static android.R.attr.name;
+import static android.view.View.GONE;
 import static com.paypal.android.sdk.fw.v;
 import static kenneth.jf.siaapp.R.layout.event;
 
@@ -99,6 +100,8 @@ public class eventlisting extends Fragment {
                     e.setName(m.getEventName());
                     e.setCode(m.getId());
                     e.setSelected(false);
+                    e.setHasTicket(m.isHasTicket());
+                    e.setFilePath(m.getFilePath());
                     EventList.add(e);
                     //return list
                     Log.d("loopforeventlistobject", m.toString());
@@ -191,16 +194,27 @@ public class eventlisting extends Fragment {
 
             ViewHolder holder = null;
             Log.v("ConvertView", String.valueOf(position));
-
+            Event Event = EventList.get(position);
             if (convertView == null) {
                 LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.event_info, null);
 
                 holder = new ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.code);
+                holder.code.setTextSize(17);
                 // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.eventInfo = (Button) convertView.findViewById(R.id.viewEventInfo);
+                holder.eventInfo.setWidth(290);
+                holder.eventInfo.setHeight(200);
+
                 holder.ticketList = (Button) convertView.findViewById(R.id.toTicketList);
+
+                holder.ticketList.setWidth(290);
+                holder.ticketList.setHeight(200);
+                if (!Event.isHasTicket()) {
+                    holder.ticketList.setVisibility(View.INVISIBLE);
+                }
+
                 convertView.setTag(holder);
 
               /*  holder.name.setOnClickListener( new View.OnClickListener() {
@@ -223,46 +237,49 @@ public class eventlisting extends Fragment {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            Event Event = EventList.get(position);
+
             holder.code.setText(Event.getName());
             //holder.code.setChecked(Event.isSelected());
             holder.code.setTag(Event);
             final Long tt = Event.getCode();
+
             holder.eventInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Button cb = (Button) view;
                     Event event = (Event) cb.getTag();
                     System.out.println("position" + tt);
-                  //  System.out.println("position name" + holder.code.getText().toString());
+                    //  System.out.println("position name" + holder.code.getText().toString());
                     int pos = position + 1;
                     //send details using bundle to the next fragment
                     Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "eventInfo");
-                    intent.putExtra("eventId", String.valueOf(tt));
+                    intent.putExtra("eventId",  String.valueOf(tt));
                     startActivity(intent);
 
 
                 }
             });
-            holder.ticketList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Button cb = (Button) view;
-                    Event event = (Event) cb.getTag();
-                    int pos = position + 1;
-                    System.out.println("position" + tt);
-                    //send details using bundle to the next fragment
-                    Intent intent = new Intent(getActivity(), dashboard.class);
-                    intent.putExtra("key2", "eventTicketing");
-                    System.out.println("clicked position: " + pos);
-                    intent.putExtra("eventId", String.valueOf(tt));
-                    System.out.println("FROM POSITION in eventListing: " + pos);
-                    startActivity(intent);
+            if (Event.isHasTicket()) {
+                holder.ticketList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Button cb = (Button) view;
+                        Event event = (Event) cb.getTag();
+                        int pos = position + 1;
+                        System.out.println("position" + tt);
+                        //send details using bundle to the next fragment
+                        Intent intent = new Intent(getActivity(), dashboard.class);
+                        intent.putExtra("key2", "eventTicketing");
+                        System.out.println("clicked position: " + pos);
+                        intent.putExtra("eventId", String.valueOf(tt));
+                        System.out.println("FROM POSITION in eventListing: " + pos);
+                        startActivity(intent);
 
 
-                }
-            });
+                    }
+                });
+            }
             return convertView;
 
         }

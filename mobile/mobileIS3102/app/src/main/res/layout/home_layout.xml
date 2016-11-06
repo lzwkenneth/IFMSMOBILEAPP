@@ -6,7 +6,7 @@ android:layout_height="match_parent" android:backgroundTint="#fff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="350sp"
+        android:paddingTop="320sp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"

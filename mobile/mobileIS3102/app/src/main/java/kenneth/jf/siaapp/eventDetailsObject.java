@@ -29,6 +29,28 @@ public class eventDetailsObject {
     @JsonProperty("description")
     private String description;
 
+    @JsonProperty("hasTicket")
+    private boolean hasTicket;
+
+    @JsonProperty("filePath")
+    private String filePath;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public boolean isHasTicket() {
+        return hasTicket;
+    }
+
+    public void setHasTicket(boolean hasTicket) {
+        this.hasTicket = hasTicket;
+    }
+
     public ArrayList<String> getAddress() {
         return address;
     }

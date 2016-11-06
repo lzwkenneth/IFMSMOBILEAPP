@@ -11,9 +11,17 @@
         android:paddingTop="60dp">
 
         <TextView
+            android:id="@+id/emptytv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="You have yet to purchase any tickets" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Purchased Ticket"/>
+            android:text="Purchased Tickets"/>
 
         <ListView
             android:layout_height="wrap_content"

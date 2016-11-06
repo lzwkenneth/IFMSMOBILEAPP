@@ -62,7 +62,7 @@ public class location extends Fragment {
                         // On complete call either onLoginSuccess or onLoginFailed
 
                     }
-                }, 70000);
+                }, 7000);
         myView = inflater.inflate(R.layout.location, container, false);
 
         return myView;
@@ -79,7 +79,7 @@ public class location extends Fragment {
 
                 HttpEntity<String> request2 = new HttpEntity<String>(ConnectionInformation.getInstance().getHeaders());
                 Log.d("TAGGGGGGGGREQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
-                String url2 = "https://" + url + "/building/viewBuildings";
+                String url2 = "https://" + url + "/tixViewBuildings";
                 Log.d("TAG", "BEFORE VERIFYING" + restTemplate.getMessageConverters().toString());
                 Log.d("TAG", request2.toString());
                 // Log.d("TAG",request2.getBody());
@@ -92,6 +92,8 @@ public class location extends Fragment {
                     obj.setCity(m.getCity());
                     obj.setNumFloor(m.getNumFloor());
                     obj.setPostalCode(m.getPostalCode());
+                    obj.setPicPath(m.getPicPath());
+                    obj.setId(m.getId());
                     locationList.add(obj);
                     //return list
                 }
@@ -221,13 +223,16 @@ public class location extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Button cb = (Button) view;
+/*                    ConnectionInformation.getInstance().setBuildingId(tt);
+                    System.out.println("location ID set as " + ConnectionInformation.getInstance().getBuildingId());*/
                     LocationListObject location = (LocationListObject) cb.getTag();
                     int pos = position + 1;
                     //send details using bundle to the next fragment
                     Intent intent = new Intent(getActivity(), dashboard.class);
                     intent.putExtra("key2", "locationInfo");
-                    intent.putExtra("locationId", String.valueOf(tt));
+                    intent.putExtra("eventId", String.valueOf(tt));
                     startActivity(intent);
+
 
 
                 }

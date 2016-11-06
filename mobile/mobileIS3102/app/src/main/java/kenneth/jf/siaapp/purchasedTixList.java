@@ -25,6 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.ExecutionException;
 
 
@@ -52,6 +54,8 @@ public class purchasedTixList extends Fragment{
             }*/
 
             lv = (ListView)myView.findViewById(R.id.purchasedTixList);
+            TextView txv = (TextView) myView.findViewById(R.id.emptytv);
+            lv.setEmptyView(txv);
            // TicketObject[] arr = (TicketObject[]) list.toArray();
             lv.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list));
             lv.setOnItemClickListener(new OnItemClickListener() {
@@ -99,6 +103,11 @@ public class purchasedTixList extends Fragment{
                     list.add(ticketObject);
                    // System.err.println("Tickets: " + o.getTicketDetails());
                 }
+                Collections.sort(list, new Comparator<TicketObject>() {
+                    public int compare(TicketObject s1, TicketObject s2) {
+                        return (s1.getTicketDetails().compareTo(s2.getTicketDetails()));
+                    }
+                });
 
                 // ResponseEntity<CategoryObject[]> responseEntity2 = restTemplate.exchange("https://" + url + "/tixViewTicketCat", HttpMethod.POST, request2, CategoryObject[].class);
 

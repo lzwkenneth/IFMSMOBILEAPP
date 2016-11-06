@@ -8,11 +8,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -44,6 +46,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import static com.paypal.android.sdk.cy.i;
+import static kenneth.jf.siaapp.R.id.textView;
 import static kenneth.jf.siaapp.R.id.ticketName;
 import static kenneth.jf.siaapp.R.layout.ticket_list;
 
@@ -60,6 +63,7 @@ public class viewTicketList extends Fragment {
     ArrayList<Ticket> ticketSelected = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
     String checkTixResponse;
+    int counter = 0;
     String spinnerSelected;
     ArrayList<String> spinList;
     ProgressDialog progressDialog;
@@ -95,6 +99,9 @@ public class viewTicketList extends Fragment {
                 spinList = new ArrayList<>();
                 TicketList = dataAdapter.getTicketListOut();
                 for (int i = 0; i < TicketList.size(); i++) {
+                    /*if ( TicketList.get(i).getNumTix() == 0){
+                        continue;
+                    }*/
                     //spinnerSelected =
                     //  System.out.println("kennnnnnnn" + dataAdapter.toString());
                     //  System.out.println("kennnnnnnn" + dataAdapter.getSpinnerItem(i).toString());
@@ -104,6 +111,7 @@ public class viewTicketList extends Fragment {
                     // System.out.println("DEBUG! " + spinnerSelected.toString());
                     //TicketList.get(i).setNumTix(Integer.valueOf(spinnerSelected));
                     //ticketSelected.add(TicketList.get(i));
+                    System.out.println(TicketList.get(i).getName() + " " + TicketList.get(i).getNumTix());
                     sum += (Double.valueOf(TicketList.get(i).getPrice() * TicketList.get(i).getNumTix()));
                 }
 
@@ -252,6 +260,8 @@ public class viewTicketList extends Fragment {
         System.out.println("Size: " + TicketList.size());
         dataAdapter = new viewTicketList.MyCustomAdapter(this.getActivity(), R.layout.ticket_info, TicketList);
         ListView listView = (ListView) myView.findViewById(R.id.listViewTicket);
+        TextView txv = (TextView) myView.findViewById(R.id.emptyv);
+        listView.setEmptyView(txv);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
         Collections.sort(TicketList, new Comparator<Ticket>() {
@@ -306,7 +316,8 @@ public class viewTicketList extends Fragment {
 
         private ArrayList<Ticket> TicketList;
         Set<ViewHolder> holderz = new HashSet<>();
-        viewTicketList.MyCustomAdapter.ViewHolder holder = null;
+        viewTicketList.MyCustomAdapter.ViewHolder holder;
+        boolean skip = true;
 
 
         public MyCustomAdapter(Context context, int textViewResourceId,
@@ -325,6 +336,7 @@ public class viewTicketList extends Fragment {
                     return (s1.getName().compareTo(s2.getName()));
                 }
             });
+            System.out.println("jinfuck" + this.TicketList.size());
 
             // System.out.println("jinfuckranagain");
         }
@@ -340,23 +352,48 @@ public class viewTicketList extends Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
 
             Log.v("ConvertView", String.valueOf(position));
-
+            final Ticket Ticket = TicketList.get(position);
             if (convertView == null) {
+                System.out.println(parent.getFocusedChild().toString() + "    " + position +  "   " + parent.getChildCount() +  "    " + parent.toString());
+                counter++;
                 LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.ticket_info, null);
                 holder = new viewTicketList.MyCustomAdapter.ViewHolder();
                 holder.ticketName = (TextView) convertView.findViewById(ticketName);
+                holder.ticketName.setTextSize(18);
+                holder.ticketName.setTypeface(null, Typeface.BOLD);
                 holder.code2 = (TextView) convertView.findViewById(R.id.code2);
+                holder.code2.setTextSize(17);
                 // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.spinner = (Spinner) convertView.findViewById(R.id.spinnerTicketList);
+                holder.spinner.setDropDownWidth(155);
+
+
+
+                try {
+                    Field popup = Spinner.class.getDeclaredField("mPopup");
+                    popup.setAccessible(true);
+
+                    // Get private mPopup member variable and try cast to ListPopupWindow
+                    android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(holder.spinner);
+
+                    // Set popupWindow height to 500px
+                    popupWindow.setHeight(1500);
+                } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+                    // silently fail...
+                }
+
+
                 //  holder.spinner.setTag(Integer.valueOf(holder.ticketName.toString()));
                 //Ticket ttt = TicketList.get(position);
                 holder.spinner.setTag(position);
-
-                if (holder.ticketName != null && holder.ticketName.getText() != null && holder.ticketName.getText().toString() != null
-                        && holder.spinner != null && holder.spinner.getSelectedItem() != null) {
+System.out.println("TTTTTT" + holder.ticketName.getText().toString() + "PPP");
+                if ( holder.ticketName != null && holder.ticketName.getText() != null && holder.ticketName.getText().toString() != null
+                        && holder.spinner != null  &&  holder.spinner.getSelectedItem() != null) {
+                    System.out.println("adding holder:" +holder.ticketName.getText().toString()+"T  "+ holder.toString());
                     holderz.add(holder);
                 }
+                skip = false;
 
                 //change to spinner
                 convertView.setTag(holder);
@@ -378,7 +415,23 @@ public class viewTicketList extends Fragment {
 */
 
             } else {
-                System.out.println("==========================");
+                holder = (viewTicketList.MyCustomAdapter.ViewHolder) convertView.getTag();
+
+               /* holder.spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        System.out.println(holder.spinner.getSelectedItemPosition() + " "+ holder.spinner.getSelectedItemId() + " "  +"ASSSSSIGN" + holder.spinner.getSelectedItem() + " to " + Ticket.getName().toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });*/
+
+               // System.out.println(holder.spinner.getOnItemSelectedListener().toString());
+
+
                 for (ViewHolder hh : holderz) {
                     ////  System.out.println("ticket is" + hh.ticketName.toString());
                     // System.out.println("ticket is" + hh.ticketName.getText().toString());
@@ -392,25 +445,24 @@ public class viewTicketList extends Fragment {
                         }
                     }
                 }
-                holder = (viewTicketList.MyCustomAdapter.ViewHolder) convertView.getTag();
-                //this.TicketList.get(position).setNumTix(Integer.valueOf(holder.spinner.getSelectedItem().toString()));
+
+                                                             //this.TicketList.get(position).setNumTix(Integer.valueOf(holder.spinner.getSelectedItem().toString()));
+
+                                                         }
+
+
+                        holder.ticketName.setText(Ticket.getName());
+                holder.code2.setText(" ( $" + String.valueOf(Ticket.getPrice()) + " )");
+                //holder.name.setChecked(Ticket.isSelected());
+                holder.code2.setTag(Ticket);
+
+                return convertView;
 
             }
 
-            Ticket Ticket = TicketList.get(position);
-
-            holder.ticketName.setText(Ticket.getName());
-            holder.code2.setText(" ( $" + String.valueOf(Ticket.getPrice()) + " )");
-            //holder.name.setChecked(Ticket.isSelected());
-            holder.code2.setTag(Ticket);
-
-            return convertView;
-
-        }
-
-        public ArrayList<Ticket> getTicketListOut() {
-            return this.TicketList;
-        }
+            public ArrayList<Ticket> getTicketListOut () {
+                return this.TicketList;
+            }
 
         public String getSpinnerItem(int position) {
             System.out.println("---------------------");

@@ -1,45 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <!--    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/ttttt"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="200dp">-->
+
+    <ImageView
+        android:id="@+id/infoIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ttttt"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/ic_info_outline_black_24dp" />
+
+    <TextView
+        android:id="@+id/eventTitle123"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="60dp">
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_below="@+id/ttttt"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/infoIcon" />
 
-        <TextView
+    <ImageView
+        android:id="@+id/descIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/infoIcon"
+        android:layout_below="@+id/infoIcon"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_description_black_24dp" />
+
+    <TextView
+        android:id="@+id/eventDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/descIcon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="11dp"
+        android:textSize="14dp"
+        android:layout_toEndOf="@+id/descIcon" />
+
+    <TextView
+        android:id="@+id/eventAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/location"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"
+        android:maxLines = "3"
+        android:scrollbars = "vertical"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@+id/location" />
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_place_black_24dp"
+        android:layout_below="@+id/descIcon"
+        android:layout_alignStart="@+id/descIcon" />
+
+    <ImageView
+        android:id="@+id/time"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_schedule_black_24dp"
+        android:layout_below="@+id/location"
+        android:layout_alignStart="@+id/location"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:id="@+id/eventStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/time"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"
+        android:layout_toEndOf="@+id/time" />
+
+    <TextView
+        android:id="@+id/eventEndDate"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/time"
+        android:textSize="14dp"
+        android:layout_toEndOf="@+id/time" />
+
+    <TextView
+        android:text="Loading event image..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="127dp"
+        android:id="@+id/textLoading" />
+
+    <ImageView
+        android:id="@+id/ttttt"
+        android:layout_width="match_parent"
+        android:layout_height="320dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <!--    <TextView
+            android:id="@+id/eventType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EVENT INFO"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventTitle123"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventType"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventStartDate"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventEndDate"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventDescription"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventAddress"/>
+            android:layout_below="@+id/time"
+            android:layout_alignStart="@+id/time"
+            android:layout_marginTop="15dp" />-->
 
 
+    <!--
+        </LinearLayout>-->
 
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

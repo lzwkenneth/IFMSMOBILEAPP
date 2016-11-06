@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="c70ef0fcd2bbcfa84672433160af90b7aaf535f0">
+        sha1="70487e33099a0389220bade7b4d8f92ff5ae7779">
         <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c9a151df3df19c5e93cf33bfb5ac59c9d6c8f24a\classes.dex" />
     </item>
     <item
@@ -84,12 +84,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.3.2\d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27\picasso-2.3.2.jar"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.2.0\cb20062e14c523637b7643295418097b48cccec2\okhttp-urlconnection-2.2.0.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
-        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.3.2_b17a0d5b48a59683882af25a9ca077eac88adec1\classes.dex" />
+        sha1="cb20062e14c523637b7643295418097b48cccec2">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-urlconnection-2.2.0_98bf0dfd4b0eb3ba5cee4a8b36b7627303201e8b\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -309,6 +309,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.4.0\f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2\picasso-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.4.0_8beb647eade74f17702cd589bfa8a23c33b9f057\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.3.0\f5e853a20b60758922453d56f9ae1e64af5cb3da\jackson-annotations-2.3.0.jar"
         jumboMode="true"
         optimize="true"
@@ -363,6 +372,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Kenneth\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.2.0\959c454243581fdf730abfd4f4745441724bcf2c\okhttp-2.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="959c454243581fdf730abfd4f4745441724bcf2c">
+        <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.2.0_6cd452c4fcdbd9a2e756d8437f06718bf182bd80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -403,7 +421,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="0db52b83b2dd24958df109d356e55569dd175fd6">
+        sha1="17655a4b23afd18f6f074469395a6c8cd7264173">
         <dex dex="C:\Users\Kenneth\Desktop\APPPPPPPPPPPPPP\IFMSMOBILEAPP\mobile\mobileIS3102\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_1fbe3e6addda879f9b9ddfd26e343a80de84a608\classes.dex" />
     </item>
     <item

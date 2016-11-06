@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/textView1"
@@ -19,25 +20,31 @@
 
     <Button
         android:id="@+id/scanner"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:gravity="center"
         android:onClick="scanQR"
-        android:text="QR Code"
-        android:textSize="18dp" >
+        android:text="Click here to scan for discounts"
+        android:textSize="18dp">
     </Button>
 
-<!--    <Button
-        android:id="@+id/scanner2"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:onClick="scanBar"
-        android:text="Bar Code"
-        android:textSize="18dp" >
-    </Button>-->
+    <TextView
+        android:text="No discounts yet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/discountView" />
+
+    <!--    <Button
+            android:id="@+id/scanner2"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:onClick="scanBar"
+            android:text="Bar Code"
+            android:textSize="18dp" >
+        </Button>-->
 </LinearLayout>

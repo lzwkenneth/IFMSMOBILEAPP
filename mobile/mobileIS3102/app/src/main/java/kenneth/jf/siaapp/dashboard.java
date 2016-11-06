@@ -21,7 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.paypal.android.sdk.payments.PayPalService;
 
@@ -34,6 +37,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
+
+import java.sql.Connection;
+import java.util.HashMap;
 
 
 public class dashboard extends AppCompatActivity
@@ -50,42 +56,53 @@ public class dashboard extends AppCompatActivity
     FragmentManager fragmentManager = getFragmentManager();
     String value = ""; // for event Id
     SliderLayout sliderShow;
+    SliderLayout mDemoSlider;
 
     public static final int PAYPAL_REQUEST_CODE = 123;
+
     @Override
     protected void onStop() {
         sliderShow.stopAutoCycle();
         super.onStop();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
 
-         sliderShow = (SliderLayout) findViewById(R.id.slider);
+        sliderShow = (SliderLayout) findViewById(R.id.slider);
 
-        TextSliderView textSliderView = new TextSliderView(this);
-        textSliderView
-                .description("Game of Thrones")
-                .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
         TextSliderView textSliderView2 = new TextSliderView(this);
-        textSliderView2
-                .description("Halloween")
-                .image(R.drawable.halloweensquare);
+        textSliderView2.setScaleType(BaseSliderView.ScaleType.Fit)
+                .description("Samsung Event")
+                .image(R.drawable.samsung);
+
 
         TextSliderView textSliderView3 = new TextSliderView(this);
-        textSliderView3
-                .description("Halloween")
+        textSliderView3.setScaleType(BaseSliderView.ScaleType.Fit)
+                .description("Christmas Extravaganza")
                 .image(R.drawable.xmas);
 
+        TextSliderView textSliderView = new TextSliderView(this);
+        textSliderView3.setScaleType(BaseSliderView.ScaleType.Fit)
+                .description("Halloween")
+                //.image("https://" + ConnectionInformation.getInstance().getUrl() + "/spongebob.jpg");
+                .image(R.drawable.halloweensquare);
 
+        TextSliderView textSliderView4 = new TextSliderView(this);
+        textSliderView
+                .description("Game of Thrones event")
+                .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
 
         sliderShow.addSlider(textSliderView);
         sliderShow.addSlider(textSliderView2);
         sliderShow.addSlider(textSliderView3);
+        // sliderShow.addSlider(textSliderView4);
+
 
         sliderShow.setDuration(3600);
 
@@ -111,18 +128,21 @@ public class dashboard extends AppCompatActivity
             } else if (extras.getString("key2").equals("ticketSum")) {
                 //from viewTicketList
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new paymentSummary()).commit();
+            } else if (extras.getString("key2").equals("locationInfo")) {
+                //from viewTicketList
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new locationInfo()).commit();
             } else if (extras.getString("key2").equals("passToPayPal")) {
                 //from paymentSummary
-                fragmentManager.beginTransaction().replace(R.id.contentFrame, new PayPalFrag()  ).commit();
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new PayPalFrag()).commit();
             } else if (extras.getString("key2").equals("purchasedTix")) {
                 //from paymentSummary
-                fragmentManager.beginTransaction().replace(R.id.contentFrame, new purchasedTixList() ).commit();
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new purchasedTixList()).commit();
             } else if (extras.getString("key2").equals("showQRcode")) {
                 //from paymentSummary
-                fragmentManager.beginTransaction().replace(R.id.contentFrame, new test() ).commit();
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new test()).commit();
             } else if (extras.getString("key2").equals("goToEventList")) {
                 //directing to event list
-                fragmentManager.beginTransaction().replace(R.id.contentFrame, new eventlisting() ).commit();
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new eventlisting()).commit();
             } else {
                 //this key is inside confirmationActivity
                 String value = extras.getString("key");
@@ -285,7 +305,7 @@ public class dashboard extends AppCompatActivity
             //
         } else if (id == R.id.inFlightOrderingFrag) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new inFlightOrderingFrag()).commit();
-            Toast.makeText(this, "Going Into In Flight Ordering Menu", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Going", Toast.LENGTH_LONG).show();
         } else if (id == R.id.home) {
             sliderShow.setVisibility(View.VISIBLE);
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new homeLayout()).commit();
@@ -474,5 +494,6 @@ public class dashboard extends AppCompatActivity
         }
 
     }
+
 
 }

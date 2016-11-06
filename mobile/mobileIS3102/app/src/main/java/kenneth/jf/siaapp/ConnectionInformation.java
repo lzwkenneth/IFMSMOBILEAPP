@@ -30,6 +30,15 @@ public class ConnectionInformation {
     public ArrayList<Ticket> ticketList;
     public ArrayList<String> numList;
 
+/*    protected Long buildingId;
+
+    public Long getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Long buildingId) {
+        this.buildingId = buildingId;
+    }*/
 
     protected String data;
     protected String url;

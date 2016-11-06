@@ -6,70 +6,108 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    >
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TableLayout
+    <!--    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Amount : "
+            android:layout_above="@+id/viewTicketList"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="68dp" />-->
+
+
+    <!--            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status : " />-->
+<!--    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction successful"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/transactionsuccessful"
+        android:layout_above="@+id/greentickpic"
+        android:layout_alignStart="@+id/viewTicketList"
+        android:layout_centerHorizontal="true" />-->
+    <TextView
+        android:id="@+id/paymentAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/youhavemade"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/paymentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/paymentAmount"
+        android:textStyle="bold" />
+
+    <!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Id : "
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_below="@+id/paymentStatus" />-->
+
+<!--    <TextView
+        android:id="@+id/paymentId"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />-->
+    <ImageView
+        android:id="@+id/greentickpic"
+        android:layout_width="190dip"
+        android:layout_height="190dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/greentick"
+        android:layout_marginTop="117dp" />
+
+    <Button
+        android:id="@+id/viewTicketList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginBottom="32dp"
+        android:onClick="viewTicketList"
+        android:text="Click Here to view your tickets"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorPrimary"></Button>
 
-        <TableRow>
+    <TextView
+        android:text="Transaction Successful"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/trans"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="22dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment Amount : " />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have successfully made a purchase of "
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/youhavemade"
+        android:layout_marginTop="329dp"
+        android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:id="@+id/paymentAmount"
-                android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status : " />
-
-            <TextView
-                android:id="@+id/paymentStatus"
-                android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment Id : " />
-
-            <TextView
-                android:id="@+id/paymentId"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-        <TableRow>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Click Here to view your tickets"
-                android:onClick="viewTicketList"
-                android:id="@+id/viewTicketList">
-            </Button>
-
-
-        </TableRow>
-
-    </TableLayout>
 
 </RelativeLayout>
