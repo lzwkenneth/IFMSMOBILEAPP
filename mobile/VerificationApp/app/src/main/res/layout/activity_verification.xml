@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_margin="20dp"
+        android:text="Scan"
+        android:textColor="#000000"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/scanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:onClick="scanQR"
+        android:text="Click to scan discounts"
+        android:textSize="18dp"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:backgroundTint="@color/material_deep_teal_50"
+        android:elevation="8dp">
+    </Button>
+
+    <TextView
+        android:text="No discounts yet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center_horizontal"
+        android:id="@+id/discountView" />
+
+    <TextView
+        android:text=" "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dip"
+        android:gravity="center_horizontal"
+        android:id="@+id/msg" />
+
+    <!--    <Button
+            android:id="@+id/scanner2"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:onClick="scanBar"
+            android:text="Bar Code"
+            android:textSize="18dp" >
+        </Button>-->
+</LinearLayout>
